@@ -1,0 +1,31 @@
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100vh;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center
+}
+
+.nav-item {
+    margin-right: 20px;
+
+}
