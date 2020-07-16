@@ -1,0 +1,8 @@
+title: Cd4d.GitHub.io
+description: frontend masters page
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
