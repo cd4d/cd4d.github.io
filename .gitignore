@@ -8,3 +8,5 @@ vendor
 .ipynb_checkpoints/
 .vscode/
 content/
+.DS_Store
+
