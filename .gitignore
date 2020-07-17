@@ -1,4 +1,5 @@
 *.ipynb
 *.json
+!nbinteract.json
 *.md
 .vscode/
