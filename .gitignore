@@ -1,6 +1,9 @@
-*.ipynb
-*.json
-!nbinteract.json
-*.md
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+
+*ipynb
+.ipynb_checkpoints/
 .vscode/
-OLD/
