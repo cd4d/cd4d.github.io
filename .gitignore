@@ -7,3 +7,4 @@ vendor
 *ipynb
 .ipynb_checkpoints/
 .vscode/
+content/
