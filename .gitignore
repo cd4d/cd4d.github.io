@@ -1,2 +1,4 @@
 *.ipynb
-reddit-banned-users-DATA.json
+*.json
+*.md
+.vscode/
