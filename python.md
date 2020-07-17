@@ -41,7 +41,46 @@ With the list of banned users provided by reddit [in the 2018 announcement](http
 
 The results are in [this file for the 2018 announcement](https://github.com/cd4d/data-analysis-reddit/blob/master/data-files/reddit-post-banning-users-2018.json) and [this file for the 2019 announcement](https://github.com/cd4d/data-analysis-reddit/blob/master/data-files/reddit-post-banning-users-2019.json).
 
- Then in the first part of the Python script these files is opened and the script parses them to get the users' handles.
+A cursory look at the 2019 file will show the structure used by reddit for organizing its data. The first level of the data structure indicating the kind (post, comment, listing etc.) and the data itself contained in a key called <code>data</code>. 
+
+#### Extracting the usernames
+
+This is where the python script below is first used to extract all the username in the text of the annoucements in two arrays, as well as the date of the announcements. 
+
+The 2019 post has the username inside the text, in the following path inside the <code>JSON</code>:
+
+```
+data > children > data > selftext
+```
+The usernames where formatted like so in the 2019 post:
+
+```
+|[gregoratior](https://www.reddit.com/user/gregoratior)|[LuzRun](https://www.reddit.com/user/LuzRun)|[McDownes](https://www.reddit.com/user/McDownes)|
+```
+
+I then used a regex pattern to isolate the usernames then add them to a json file.
+
+```python
+pattern = r"(?<=user/).*?[^?/!\\)]*" \
+```
+
+The resulting json file containing usernames:
+
+```json
+{
+  "2018-May-09": [
+    "1488Reasons",
+    "20twony",
+    "Abena_Tau",
+    "Admiraf",
+    ...],
+    "2019-Dec-06": [
+    "alabelm",
+    "almanzamary",
+    "AntonioDiazz",
+    "bellagara"]
+}
+```
 
 <details>
 <summary>Extracting usernames of the banned accounts</summary>
@@ -79,8 +118,92 @@ for filename in args:
 
 #### Fetching data from banned users
 
+With that information, I wrote a function to the python script to automatically fetch data of the users.
+
+##### build_users_database function
+
+This function takes a filename as argument as well as the reddit kind of data (post, comment...) and 
+write the result to a new <code>JSON</code> file. I executed it on the previously built usernames list and got a new file containing all data related to said usernames.
+
 <details>
-<summary>Python script</summary>
+<summary>Scraping data from usernames</summary>
+
+```python
+def build_users_database(filename, *args):
+""" requests json files for all the users in the reddit-list-banned-users.json file 
+    and saves all the data in a new file for analysis with pandas """
+
+    all_users = []
+    with open(filename) as f:
+        data = json.load(f)
+        for k,v in data.items():
+            for e in v:
+                # creates a tuple ("username", "banwave year") for each user
+                all_users.append((e, k))
+
+    # sorts through the tuples in a case insensitive manner
+    all_users.sort(key=lambda x: x[0].casefold() )   
+
+    # do requests based on the list
+    start_time = datetime.now()
+    print(f"Starting scraping data from {len(all_users)} Reddit users at {start_time}")
+    user_data = {}
+
+    for user, ban_year in all_users:
+        # first fetch the json file corresponding to the username and the attribute in the list i.e "about", "submitted" pages
+        for attr in args:
+            response = requests.get("https://www.reddit.com/user/" + user + "/" + attr +  ".json?raw_json=1", headers = USER_AGENT) # using headers to avoid error 429 https://stackoverflow.com/questions/34539129/parsing-reddit-json-into-python-array-and-print-items-from-array
+
+            if user not in user_data: #initialize the dictionary with first json data
+                try:
+                    user_data[user] = {attr:json.loads(response.text)["data"]} #filter to the level with desired data
+                except KeyError:
+                    print("Key Error:", user)
+
+            else: # or update the dictionary entry 
+                try:
+                    user_data[user].update({attr:json.loads(response.text)["data"]})
+                except KeyError:
+                    print(f"Key Error: {user}. Maybe user was suspended.")
+
+        # finally, add banwave year for later analysis
+        user_data[user].update({"banwave_year": ban_year})
+```
+</details>
+
+The resulting file contained 732,882 lines of data about 1001 usernames.
+
+Here's a sample:
+
+```json
+{
+  "1488Reasons": {
+    "about": {
+      "is_employee": false,
+      "icon_img": "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
+      "pref_show_snoovatar": false,
+      "name": "1488reasons",
+      "is_friend": false,
+      "created": 1452960067.0,
+      "has_subscribed": true,
+      ...
+      "subreddit": {
+        "default_set": true,
+        "user_is_contributor": null,
+        "banner_img": "",
+        "restrict_posting": true,
+        ...
+      },
+      "has_verified_email": false,
+      "id": "tu7sn",
+      ...
+    }
+```
+
+
+
+<details>
+<summary>The whole Python script</summary>
 
 ```python
 import json
@@ -167,7 +290,7 @@ for filename in args:
         print(filename, "file not found")
 
 def build_users_database(filename, *args):
-""" requests json files for all the users in the reddit-all-banned-users.json file 
+""" requests json files for all the users in the reddit-list-banned-users.json file 
     and saves all the data in a new file for analysis with pandas """
 
     all_users = []
