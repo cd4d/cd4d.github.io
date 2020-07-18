@@ -40,86 +40,9 @@ nltk.download("popular")
 nltk.download('punkt')
 ```
 
-    Requirement already satisfied: wordcloud in /home/k/anaconda3/lib/python3.7/site-packages (1.7.0)
-    Requirement already satisfied: pillow in /home/k/anaconda3/lib/python3.7/site-packages (from wordcloud) (7.0.0)
-    Requirement already satisfied: matplotlib in /home/k/anaconda3/lib/python3.7/site-packages (from wordcloud) (3.1.3)
-    Requirement already satisfied: numpy>=1.6.1 in /home/k/anaconda3/lib/python3.7/site-packages (from wordcloud) (1.18.1)
-    Requirement already satisfied: python-dateutil>=2.1 in /home/k/anaconda3/lib/python3.7/site-packages (from matplotlib->wordcloud) (2.8.1)
-    Requirement already satisfied: cycler>=0.10 in /home/k/anaconda3/lib/python3.7/site-packages (from matplotlib->wordcloud) (0.10.0)
-    Requirement already satisfied: kiwisolver>=1.0.1 in /home/k/anaconda3/lib/python3.7/site-packages (from matplotlib->wordcloud) (1.1.0)
-    Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /home/k/anaconda3/lib/python3.7/site-packages (from matplotlib->wordcloud) (2.4.6)
-    Requirement already satisfied: six>=1.5 in /home/k/anaconda3/lib/python3.7/site-packages (from python-dateutil>=2.1->matplotlib->wordcloud) (1.14.0)
-    Requirement already satisfied: setuptools in /home/k/anaconda3/lib/python3.7/site-packages (from kiwisolver>=1.0.1->matplotlib->wordcloud) (45.2.0.post20200210)
-    Note: you may need to restart the kernel to use updated packages.
-
-
-    [nltk_data] Downloading package vader_lexicon to /home/k/nltk_data...
-    [nltk_data]   Package vader_lexicon is already up-to-date!
-    [nltk_data] Downloading collection 'popular'
-    [nltk_data]    | 
-    [nltk_data]    | Downloading package cmudict to /home/k/nltk_data...
-    [nltk_data]    |   Package cmudict is already up-to-date!
-    [nltk_data]    | Downloading package gazetteers to
-    [nltk_data]    |     /home/k/nltk_data...
-    [nltk_data]    |   Package gazetteers is already up-to-date!
-    [nltk_data]    | Downloading package genesis to /home/k/nltk_data...
-    [nltk_data]    |   Package genesis is already up-to-date!
-    [nltk_data]    | Downloading package gutenberg to /home/k/nltk_data...
-    [nltk_data]    |   Package gutenberg is already up-to-date!
-    [nltk_data]    | Downloading package inaugural to /home/k/nltk_data...
-    [nltk_data]    |   Package inaugural is already up-to-date!
-    [nltk_data]    | Downloading package movie_reviews to
-    [nltk_data]    |     /home/k/nltk_data...
-    [nltk_data]    |   Package movie_reviews is already up-to-date!
-    [nltk_data]    | Downloading package names to /home/k/nltk_data...
-    [nltk_data]    |   Package names is already up-to-date!
-    [nltk_data]    | Downloading package shakespeare to
-    [nltk_data]    |     /home/k/nltk_data...
-    [nltk_data]    |   Package shakespeare is already up-to-date!
-    [nltk_data]    | Downloading package stopwords to /home/k/nltk_data...
-    [nltk_data]    |   Package stopwords is already up-to-date!
-    [nltk_data]    | Downloading package treebank to /home/k/nltk_data...
-    [nltk_data]    |   Package treebank is already up-to-date!
-    [nltk_data]    | Downloading package twitter_samples to
-    [nltk_data]    |     /home/k/nltk_data...
-    [nltk_data]    |   Package twitter_samples is already up-to-date!
-    [nltk_data]    | Downloading package omw to /home/k/nltk_data...
-    [nltk_data]    |   Package omw is already up-to-date!
-    [nltk_data]    | Downloading package wordnet to /home/k/nltk_data...
-    [nltk_data]    |   Package wordnet is already up-to-date!
-    [nltk_data]    | Downloading package wordnet_ic to
-    [nltk_data]    |     /home/k/nltk_data...
-    [nltk_data]    |   Package wordnet_ic is already up-to-date!
-    [nltk_data]    | Downloading package words to /home/k/nltk_data...
-    [nltk_data]    |   Package words is already up-to-date!
-    [nltk_data]    | Downloading package maxent_ne_chunker to
-    [nltk_data]    |     /home/k/nltk_data...
-    [nltk_data]    |   Package maxent_ne_chunker is already up-to-date!
-    [nltk_data]    | Downloading package punkt to /home/k/nltk_data...
-    [nltk_data]    |   Package punkt is already up-to-date!
-    [nltk_data]    | Downloading package snowball_data to
-    [nltk_data]    |     /home/k/nltk_data...
-    [nltk_data]    |   Package snowball_data is already up-to-date!
-    [nltk_data]    | Downloading package averaged_perceptron_tagger to
-    [nltk_data]    |     /home/k/nltk_data...
-    [nltk_data]    |   Package averaged_perceptron_tagger is already up-
-    [nltk_data]    |       to-date!
-    [nltk_data]    | 
-    [nltk_data]  Done downloading collection popular
-    [nltk_data] Downloading package punkt to /home/k/nltk_data...
-    [nltk_data]   Package punkt is already up-to-date!
-
-
-
-
-
-    True
-
-
-
 
 ```python
-# import the json file containing data on 1001 banned Reddit users
+# import the json file containint data on 1001 banned Reddit users
 rawdata = pd.read_json("data-files/reddit-banned-users-DATA.json")
 ```
 
@@ -152,6 +75,92 @@ about = json_normalize(rawdata["about"])
 # appending banwave_year to about dataframe
 about["banwave_year"] = rawdata["banwave_year"].values
 ```
+
+
+```python
+rawdata.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>about</th>
+      <th>submitted</th>
+      <th>comments</th>
+      <th>gilded</th>
+      <th>trophies</th>
+      <th>banwave_year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1488Reasons</th>
+      <td>{'is_employee': False, 'icon_img': 'https://ww...</td>
+      <td>{'modhash': '', 'dist': 1, 'children': [{'kind...</td>
+      <td>{'modhash': '', 'dist': 25, 'children': [{'kin...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'trophies': [{'kind': 't6', 'data': {'icon_70...</td>
+      <td>2018-May-09</td>
+    </tr>
+    <tr>
+      <th>20twony</th>
+      <td>{'is_employee': False, 'icon_img': 'https://ww...</td>
+      <td>{'modhash': '', 'dist': 1, 'children': [{'kind...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'trophies': [{'kind': 't6', 'data': {'icon_70...</td>
+      <td>2018-May-09</td>
+    </tr>
+    <tr>
+      <th>Abena_Tau</th>
+      <td>{'is_employee': False, 'icon_img': 'https://ww...</td>
+      <td>{'modhash': '', 'dist': 18, 'children': [{'kin...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'trophies': [{'kind': 't6', 'data': {'icon_70...</td>
+      <td>2018-May-09</td>
+    </tr>
+    <tr>
+      <th>Admiraf</th>
+      <td>{'is_employee': False, 'icon_img': 'https://ww...</td>
+      <td>{'modhash': '', 'dist': 1, 'children': [{'kind...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'trophies': [{'kind': 't6', 'data': {'icon_70...</td>
+      <td>2018-May-09</td>
+    </tr>
+    <tr>
+      <th>AdofynMorakus</th>
+      <td>{'is_employee': False, 'icon_img': 'https://ww...</td>
+      <td>{'modhash': '', 'dist': 1, 'children': [{'kind...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'trophies': [{'kind': 't6', 'data': {'icon_70...</td>
+      <td>2018-May-09</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 
 ```python
@@ -209,6 +218,183 @@ submitted.shape
 
 
     (3933, 359)
+
+
+
+
+```python
+submitted.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>approved_at_utc</th>
+      <th>subreddit</th>
+      <th>selftext</th>
+      <th>author_fullname</th>
+      <th>saved</th>
+      <th>mod_reason_title</th>
+      <th>gilded</th>
+      <th>clicked</th>
+      <th>title</th>
+      <th>link_flair_richtext</th>
+      <th>...</th>
+      <th>media_metadata.o6t2xme0b9u31.s.u</th>
+      <th>media_metadata.o6t2xme0b9u31.m</th>
+      <th>media_metadata.o6t2xme0b9u31.id</th>
+      <th>media_metadata.lhjpjj6furt21.status</th>
+      <th>media_metadata.lhjpjj6furt21.e</th>
+      <th>media_metadata.lhjpjj6furt21.s.y</th>
+      <th>media_metadata.lhjpjj6furt21.s.x</th>
+      <th>media_metadata.lhjpjj6furt21.s.u</th>
+      <th>media_metadata.lhjpjj6furt21.m</th>
+      <th>media_metadata.lhjpjj6furt21.id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>None</td>
+      <td>u_reddit</td>
+      <td></td>
+      <td>t2_1qwk</td>
+      <td>False</td>
+      <td>None</td>
+      <td>0</td>
+      <td>False</td>
+      <td>This account is banned and is temporarily pres...</td>
+      <td>[]</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>None</td>
+      <td>u_reddit</td>
+      <td></td>
+      <td>t2_1qwk</td>
+      <td>False</td>
+      <td>None</td>
+      <td>0</td>
+      <td>False</td>
+      <td>This account is banned and is temporarily pres...</td>
+      <td>[]</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>None</td>
+      <td>u_reddit</td>
+      <td></td>
+      <td>t2_1qwk</td>
+      <td>False</td>
+      <td>None</td>
+      <td>0</td>
+      <td>False</td>
+      <td>This account is banned and is temporarily pres...</td>
+      <td>[]</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>None</td>
+      <td>Blackpeople</td>
+      <td></td>
+      <td>t2_wr8hk</td>
+      <td>False</td>
+      <td>None</td>
+      <td>0</td>
+      <td>False</td>
+      <td>The Story of 10 Young People Killed in a Day b...</td>
+      <td>[]</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>None</td>
+      <td>Blackpeople</td>
+      <td></td>
+      <td>t2_wr8hk</td>
+      <td>False</td>
+      <td>None</td>
+      <td>0</td>
+      <td>False</td>
+      <td>Ramsey Orta: No regrets for shooting viral vid...</td>
+      <td>[]</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 359 columns</p>
+</div>
 
 
 
@@ -341,6 +527,360 @@ comments_banwave_2018 = comments.merge(about_banwave_2018, how="inner", left_on=
 comments_banwave_2019 = comments.merge(about_banwave_2019, how="inner", left_on="author", right_on="name")
 ```
 
+
+```python
+submitted_banwave_2018.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>subreddit</th>
+      <th>selftext</th>
+      <th>author_fullname</th>
+      <th>gilded</th>
+      <th>title</th>
+      <th>name_x</th>
+      <th>subreddit_type</th>
+      <th>ups</th>
+      <th>total_awards_received</th>
+      <th>is_reddit_media_domain</th>
+      <th>...</th>
+      <th>is_suspended</th>
+      <th>banwave_year</th>
+      <th>karma</th>
+      <th>date_created</th>
+      <th>year_graph_y</th>
+      <th>year_y</th>
+      <th>month_nr_y</th>
+      <th>month_y</th>
+      <th>day_y</th>
+      <th>day_of_week_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Blackpeople</td>
+      <td></td>
+      <td>t2_wr8hk</td>
+      <td>0</td>
+      <td>The Story of 10 Young People Killed in a Day b...</td>
+      <td>t3_55n8or</td>
+      <td>public</td>
+      <td>3</td>
+      <td>0</td>
+      <td>False</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2018-May-09</td>
+      <td>17.0</td>
+      <td>2016-03-30 13:23:08</td>
+      <td>2016.0</td>
+      <td>2016</td>
+      <td>2016-03</td>
+      <td>March</td>
+      <td>2016-03-30</td>
+      <td>Wednesday</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Blackpeople</td>
+      <td></td>
+      <td>t2_wr8hk</td>
+      <td>0</td>
+      <td>Ramsey Orta: No regrets for shooting viral vid...</td>
+      <td>t3_55celf</td>
+      <td>public</td>
+      <td>2</td>
+      <td>0</td>
+      <td>False</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2018-May-09</td>
+      <td>17.0</td>
+      <td>2016-03-30 13:23:08</td>
+      <td>2016.0</td>
+      <td>2016</td>
+      <td>2016-03</td>
+      <td>March</td>
+      <td>2016-03-30</td>
+      <td>Wednesday</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Blackpeople</td>
+      <td></td>
+      <td>t2_wr8hk</td>
+      <td>0</td>
+      <td>Police Brutality Facts: The Case Of Terrence S...</td>
+      <td>t3_552gqq</td>
+      <td>public</td>
+      <td>2</td>
+      <td>0</td>
+      <td>False</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2018-May-09</td>
+      <td>17.0</td>
+      <td>2016-03-30 13:23:08</td>
+      <td>2016.0</td>
+      <td>2016</td>
+      <td>2016-03</td>
+      <td>March</td>
+      <td>2016-03-30</td>
+      <td>Wednesday</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Blackfellas</td>
+      <td></td>
+      <td>t2_wr8hk</td>
+      <td>0</td>
+      <td>Gordon's emotional HR helps top Mets as Marlin...</td>
+      <td>t3_54q6v4</td>
+      <td>public</td>
+      <td>6</td>
+      <td>0</td>
+      <td>False</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2018-May-09</td>
+      <td>17.0</td>
+      <td>2016-03-30 13:23:08</td>
+      <td>2016.0</td>
+      <td>2016</td>
+      <td>2016-03</td>
+      <td>March</td>
+      <td>2016-03-30</td>
+      <td>Wednesday</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>blackculture</td>
+      <td></td>
+      <td>t2_wr8hk</td>
+      <td>0</td>
+      <td>Corporations Boycotted North Carolina over the...</td>
+      <td>t3_54qb41</td>
+      <td>public</td>
+      <td>1</td>
+      <td>0</td>
+      <td>False</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2018-May-09</td>
+      <td>17.0</td>
+      <td>2016-03-30 13:23:08</td>
+      <td>2016.0</td>
+      <td>2016</td>
+      <td>2016-03</td>
+      <td>March</td>
+      <td>2016-03-30</td>
+      <td>Wednesday</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 71 columns</p>
+</div>
+
+
+
+
+```python
+submitted_banwave_2019.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>subreddit</th>
+      <th>selftext</th>
+      <th>author_fullname</th>
+      <th>gilded</th>
+      <th>title</th>
+      <th>name_x</th>
+      <th>subreddit_type</th>
+      <th>ups</th>
+      <th>total_awards_received</th>
+      <th>is_reddit_media_domain</th>
+      <th>...</th>
+      <th>is_suspended</th>
+      <th>banwave_year</th>
+      <th>karma</th>
+      <th>date_created</th>
+      <th>year_graph_y</th>
+      <th>year_y</th>
+      <th>month_nr_y</th>
+      <th>month_y</th>
+      <th>day_y</th>
+      <th>day_of_week_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The_Europe</td>
+      <td>https://s27.postimg.org/epmy7w943/1mac.jpg  \n...</td>
+      <td>t2_178mh7</td>
+      <td>0</td>
+      <td>Macron moves in the Élysée Palace on shoulders...</td>
+      <td>t3_66gpgy</td>
+      <td>public</td>
+      <td>10</td>
+      <td>0</td>
+      <td>False</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2019-Dec-06</td>
+      <td>48.0</td>
+      <td>2017-04-20 08:56:32</td>
+      <td>2017.0</td>
+      <td>2017</td>
+      <td>2017-04</td>
+      <td>April</td>
+      <td>2017-04-20</td>
+      <td>Thursday</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Eurosceptics</td>
+      <td>[removed]</td>
+      <td>t2_178mh7</td>
+      <td>0</td>
+      <td>Macron moves in the Élysée Palace on shoulders...</td>
+      <td>t3_66grj3</td>
+      <td>public</td>
+      <td>0</td>
+      <td>0</td>
+      <td>False</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2019-Dec-06</td>
+      <td>48.0</td>
+      <td>2017-04-20 08:56:32</td>
+      <td>2017.0</td>
+      <td>2017</td>
+      <td>2017-04</td>
+      <td>April</td>
+      <td>2017-04-20</td>
+      <td>Thursday</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>europe</td>
+      <td>[removed]</td>
+      <td>t2_178mh7</td>
+      <td>0</td>
+      <td>Macron moves in the Élysée Palace on shoulders...</td>
+      <td>t3_66gjdo</td>
+      <td>public</td>
+      <td>1</td>
+      <td>0</td>
+      <td>False</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2019-Dec-06</td>
+      <td>48.0</td>
+      <td>2017-04-20 08:56:32</td>
+      <td>2017.0</td>
+      <td>2017</td>
+      <td>2017-04</td>
+      <td>April</td>
+      <td>2017-04-20</td>
+      <td>Thursday</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>eupolitics</td>
+      <td>https://s27.postimg.org/epmy7w943/1mac.jpg  \n...</td>
+      <td>t2_178mh7</td>
+      <td>0</td>
+      <td>Macron moves in the Élysée Palace on shoulders...</td>
+      <td>t3_66gnnb</td>
+      <td>public</td>
+      <td>0</td>
+      <td>0</td>
+      <td>False</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2019-Dec-06</td>
+      <td>48.0</td>
+      <td>2017-04-20 08:56:32</td>
+      <td>2017.0</td>
+      <td>2017</td>
+      <td>2017-04</td>
+      <td>April</td>
+      <td>2017-04-20</td>
+      <td>Thursday</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>eu</td>
+      <td>[removed]</td>
+      <td>t2_178mh7</td>
+      <td>0</td>
+      <td>Macron moves in the Élysée Palace on shoulders...</td>
+      <td>t3_66glmq</td>
+      <td>public</td>
+      <td>0</td>
+      <td>0</td>
+      <td>False</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2019-Dec-06</td>
+      <td>48.0</td>
+      <td>2017-04-20 08:56:32</td>
+      <td>2017.0</td>
+      <td>2017</td>
+      <td>2017-04</td>
+      <td>April</td>
+      <td>2017-04-20</td>
+      <td>Thursday</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 71 columns</p>
+</div>
+
+
+
 # Analysis
 
 
@@ -395,7 +935,7 @@ plt.xticks(rotation=25)
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_31_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_35_1.png)
 
 
 
@@ -422,45 +962,22 @@ fig.show(renderer="png")
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_34_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_38_0.png)
 
 
 
 ```python
 #top_subreddits_2018.sort_values().plot(kind="barh")
 #plt.xticks(rotation=90)
-import numpy as np
-df = pd.DataFrame(submitted_banwave_2018.groupby("subreddit", as_index=False).count().sort_values(by="score", ascending=False).head())
-cols_to_keep = ["subreddit", "score"]
-colors = tuple(np.where(df["score"]>400, 'g', 'r'))
-my_colors = [(x/1000, x/1000, 0.75) for x in range(min(df[cols_to_keep]["score"]),max(df[cols_to_keep]["score"]))] # <-- Quick gradient example along the Red/Green dimensions.
-df[cols_to_keep].sort_values(by="score", ascending=True).plot.barh(x="subreddit", color="blue")
-range(min(df[cols_to_keep]["score"]),max(df[cols_to_keep]["score"]))
+#import numpy as np
+#df = pd.DataFrame(submitted_banwave_2018.groupby("subreddit", as_index=False).count().sort_values(by="score", ascending=False).head())
+#cols_to_keep = ["subreddit", "score"]
+#df[cols_to_keep].sort_values(by="score", ascending=True).plot.barh(x="subreddit", color="blue")
+#range(min(df[cols_to_keep]["score"]),max(df[cols_to_keep]["score"]))
 ```
-
-
-
-
-    range(106, 639)
-
-
-
-
-![png](project-reddit-analysis_files/project-reddit-analysis_35_1.png)
-
-
-
-```python
-min(df["score"])
-```
-
-
-
-
-    106
-
 
 ## Users banned in 2019
+
 ### User creation over the years, users banned in 2019
 
 
@@ -482,7 +999,7 @@ plt.xticks(rotation=25)
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_39_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_42_1.png)
 
 
 ### Subreddits most used by users banned in 2018
@@ -495,53 +1012,11 @@ fig = px.bar(top_subreddits_2019.sort_values(by="score", ascending=True), y="sub
              hover_data=["subreddit"], color="score",
              labels={'Score':'Nr of posts'}, height=400
             )
-fig.show()
+fig.show(renderer="png")
 ```
 
 
-<div>
-
-
-            <div id="2787e4b3-3d54-46b5-91ea-997ac75f72e7" class="plotly-graph-div" style="height:400px; width:100%;"></div>
-            <script type="text/javascript">
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-
-                if (document.getElementById("2787e4b3-3d54-46b5-91ea-997ac75f72e7")) {
-                    Plotly.newPlot(
-                        '2787e4b3-3d54-46b5-91ea-997ac75f72e7',
-                        [{"alignmentgroup": "True", "customdata": [["france"], ["vzla"], ["noticias_en_espanol"], ["espanol"], ["es"], ["spain"], ["europe"]], "hovertemplate": "score=%{marker.color}<br>subreddit=%{customdata[0]}<extra></extra>", "legendgroup": "", "marker": {"color": [5, 6, 7, 7, 9, 9, 9], "coloraxis": "coloraxis"}, "name": "", "offsetgroup": "", "orientation": "h", "showlegend": false, "textposition": "auto", "type": "bar", "x": [5, 6, 7, 7, 9, 9, 9], "xaxis": "x", "y": ["france", "vzla", "noticias_en_espanol", "espanol", "es", "spain", "europe"], "yaxis": "y"}],
-                        {"barmode": "relative", "coloraxis": {"colorbar": {"title": {"text": "score"}}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "height": 400, "legend": {"tracegroupgap": 0}, "margin": {"t": 60}, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "title": {"text": "score"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "title": {"text": "subreddit"}}},
-                        {"responsive": true}
-                    ).then(function(){
-
-var gd = document.getElementById('2787e4b3-3d54-46b5-91ea-997ac75f72e7');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            </script>
-        </div>
+![png](project-reddit-analysis_files/project-reddit-analysis_44_0.png)
 
 
 ### Yearly trends
@@ -558,12 +1033,12 @@ yearly_trend_submitted.groupby(pd.Grouper(key='date_posted', freq='M')).size().p
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f6515ff6f90>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fe882e56610>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_44_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_47_1.png)
 
 
 ### Spikes in post, by months
@@ -579,12 +1054,12 @@ monthly_trend[monthly_trend > 20].plot()
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f6515f35750>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fe88a101250>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_46_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_49_1.png)
 
 
 ### Comments
@@ -599,12 +1074,12 @@ yearly_trend_comments.groupby(pd.Grouper(key='date_posted', freq='M')).size().pl
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f6515ec3f50>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fe88a0f0310>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_48_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_51_1.png)
 
 
 ### Subreddits with most upvoted comments
@@ -618,53 +1093,11 @@ fig = px.bar(top_comments.sort_values(by="score", ascending=True), y="subreddit"
              hover_data=["subreddit"], color="score",
              labels={"score": "score"}, height=400
             )
-fig.show()
+fig.show(renderer="png")
 ```
 
 
-<div>
-
-
-            <div id="e34cc7cc-c57f-4a3e-b0a6-89d947f013d9" class="plotly-graph-div" style="height:400px; width:100%;"></div>
-            <script type="text/javascript">
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-
-                if (document.getElementById("e34cc7cc-c57f-4a3e-b0a6-89d947f013d9")) {
-                    Plotly.newPlot(
-                        'e34cc7cc-c57f-4a3e-b0a6-89d947f013d9',
-                        [{"alignmentgroup": "True", "customdata": [["Jokes"], ["CryptoCurrency"], ["worldnews"], ["IAmA"], ["AskReddit"]], "hovertemplate": "score=%{marker.color}<br>subreddit=%{customdata[0]}<extra></extra>", "legendgroup": "", "marker": {"color": [133, 359, 466, 2949, 9576], "coloraxis": "coloraxis"}, "name": "", "offsetgroup": "", "orientation": "h", "showlegend": false, "textposition": "auto", "type": "bar", "x": [133, 359, 466, 2949, 9576], "xaxis": "x", "y": ["Jokes", "CryptoCurrency", "worldnews", "IAmA", "AskReddit"], "yaxis": "y"}],
-                        {"barmode": "relative", "coloraxis": {"colorbar": {"title": {"text": "score"}}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "height": 400, "legend": {"tracegroupgap": 0}, "margin": {"t": 60}, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "title": {"text": "score"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "title": {"text": "subreddit"}}},
-                        {"responsive": true}
-                    ).then(function(){
-
-var gd = document.getElementById('e34cc7cc-c57f-4a3e-b0a6-89d947f013d9');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            </script>
-        </div>
+![png](project-reddit-analysis_files/project-reddit-analysis_53_0.png)
 
 
 ### Year 2016 - US Election
@@ -681,12 +1114,12 @@ top_2016_submitted.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot(
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f6515dffbd0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fe88a0b1e10>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_53_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_56_1.png)
 
 
 
@@ -699,12 +1132,12 @@ top_2016_submitted.groupby(pd.Grouper(key='date_posted', freq='W')).size().plot(
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f6515d87810>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fe882975550>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_54_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_57_1.png)
 
 
 
@@ -721,12 +1154,12 @@ top_late_2016.groupby(pd.Grouper(key='date_posted', freq='D')).size().plot()
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f6515cc5dd0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fe88a0e6910>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_55_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_58_1.png)
 
 
 ### Subreddits where the users were most active, 2016
@@ -738,53 +1171,11 @@ fig = px.bar(top_subreddits_2016_bar1.sort_values(by="num_comments"), y="subredd
              hover_data=["subreddit"], color="score",
              labels={'id':'Nr of posts'}, height=400
             )
-fig.show()
+fig.show(renderer="png")
 ```
 
 
-<div>
-
-
-            <div id="6fbeca61-9bfd-4ee2-bd70-4994f218a5f6" class="plotly-graph-div" style="height:400px; width:100%;"></div>
-            <script type="text/javascript">
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-
-                if (document.getElementById("6fbeca61-9bfd-4ee2-bd70-4994f218a5f6")) {
-                    Plotly.newPlot(
-                        '6fbeca61-9bfd-4ee2-bd70-4994f218a5f6',
-                        [{"alignmentgroup": "True", "customdata": [["corgi"], ["Blackfellas"], ["gifs"], ["Bad_Cop_No_Donut"], ["blackpower"], ["gif"], ["news"], ["aww"], ["snapleaks"], ["funny"]], "hovertemplate": "Nr of posts=%{x}<br>subreddit=%{customdata[0]}<br>score=%{marker.color}<extra></extra>", "legendgroup": "", "marker": {"color": [9, 11, 12, 13, 14, 15, 25, 27, 31, 34], "coloraxis": "coloraxis"}, "name": "", "offsetgroup": "", "orientation": "h", "showlegend": false, "textposition": "auto", "type": "bar", "x": [9, 11, 12, 13, 14, 15, 25, 27, 31, 34], "xaxis": "x", "y": ["corgi", "Blackfellas", "gifs", "Bad_Cop_No_Donut", "blackpower", "gif", "news", "aww", "snapleaks", "funny"], "yaxis": "y"}],
-                        {"barmode": "relative", "coloraxis": {"colorbar": {"title": {"text": "score"}}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "height": 400, "legend": {"tracegroupgap": 0}, "margin": {"t": 60}, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "title": {"text": "Nr of posts"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "title": {"text": "subreddit"}}},
-                        {"responsive": true}
-                    ).then(function(){
-
-var gd = document.getElementById('6fbeca61-9bfd-4ee2-bd70-4994f218a5f6');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            </script>
-        </div>
+![png](project-reddit-analysis_files/project-reddit-analysis_60_0.png)
 
 
 ### Subreddit with posts generating the most comments, 2016
@@ -796,53 +1187,11 @@ fig = px.bar(top_subreddits_2016_bar2.sort_values(by="num_comments"), y="subredd
              hover_data=["subreddit"], color="num_comments",
              labels={'num_comments':'Nr of comments'}, height=400
             )
-fig.show()
+fig.show(renderer="png")
 ```
 
 
-<div>
-
-
-            <div id="bce9f8b1-bdd1-46e7-87f1-7ddbbd336ba3" class="plotly-graph-div" style="height:400px; width:100%;"></div>
-            <script type="text/javascript">
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-
-                if (document.getElementById("bce9f8b1-bdd1-46e7-87f1-7ddbbd336ba3")) {
-                    Plotly.newPlot(
-                        'bce9f8b1-bdd1-46e7-87f1-7ddbbd336ba3',
-                        [{"alignmentgroup": "True", "customdata": [["snapleaks"], ["syriancivilwar"], ["gifs"], ["aww"], ["news"], ["firstworldanarchists"], ["blackpeoplegifs"], ["HistoryPorn"], ["pics"], ["funny"]], "hovertemplate": "Nr of comments=%{marker.color}<br>subreddit=%{customdata[0]}<extra></extra>", "legendgroup": "", "marker": {"color": [82, 98, 158, 245, 250, 294, 353, 533, 540, 960], "coloraxis": "coloraxis"}, "name": "", "offsetgroup": "", "orientation": "h", "showlegend": false, "textposition": "auto", "type": "bar", "x": [82, 98, 158, 245, 250, 294, 353, 533, 540, 960], "xaxis": "x", "y": ["snapleaks", "syriancivilwar", "gifs", "aww", "news", "firstworldanarchists", "blackpeoplegifs", "HistoryPorn", "pics", "funny"], "yaxis": "y"}],
-                        {"barmode": "relative", "coloraxis": {"colorbar": {"title": {"text": "Nr of comments"}}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "height": 400, "legend": {"tracegroupgap": 0}, "margin": {"t": 60}, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "title": {"text": "Nr of comments"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "title": {"text": "subreddit"}}},
-                        {"responsive": true}
-                    ).then(function(){
-
-var gd = document.getElementById('bce9f8b1-bdd1-46e7-87f1-7ddbbd336ba3');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            </script>
-        </div>
+![png](project-reddit-analysis_files/project-reddit-analysis_62_0.png)
 
 
 ###  Top comments in 2016
@@ -857,12 +1206,12 @@ comments_2016.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f6515b8ecd0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fe88a0d0250>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_61_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_64_1.png)
 
 
 ### Subreddits with most upvoted comments, 2016
@@ -874,53 +1223,11 @@ fig = px.bar(top_comments_2016_bar.sort_values(by="score"), y="subreddit", x="sc
              hover_data=["subreddit"], color="score",
              labels={'Score':'Nr of posts'}, height=400
             )
-fig.show()
+fig.show(renderer="png")
 ```
 
 
-<div>
-
-
-            <div id="65c57f41-a170-4b9f-8aa1-d8a184c280f5" class="plotly-graph-div" style="height:400px; width:100%;"></div>
-            <script type="text/javascript">
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-
-                if (document.getElementById("65c57f41-a170-4b9f-8aa1-d8a184c280f5")) {
-                    Plotly.newPlot(
-                        '65c57f41-a170-4b9f-8aa1-d8a184c280f5',
-                        [{"alignmentgroup": "True", "customdata": [["HailCorporate"], ["conspiracy"], ["AskReddit"], ["gifs"], ["newzealand"], ["pics"], ["Showerthoughts"], ["Bad_Cop_No_Donut"], ["RetroFuturism"], ["worldnews"]], "hovertemplate": "score=%{marker.color}<br>subreddit=%{customdata[0]}<extra></extra>", "legendgroup": "", "marker": {"color": [12, 14, 14, 15, 16, 25, 26, 45, 77, 96], "coloraxis": "coloraxis"}, "name": "", "offsetgroup": "", "orientation": "h", "showlegend": false, "textposition": "auto", "type": "bar", "x": [12, 14, 14, 15, 16, 25, 26, 45, 77, 96], "xaxis": "x", "y": ["HailCorporate", "conspiracy", "AskReddit", "gifs", "newzealand", "pics", "Showerthoughts", "Bad_Cop_No_Donut", "RetroFuturism", "worldnews"], "yaxis": "y"}],
-                        {"barmode": "relative", "coloraxis": {"colorbar": {"title": {"text": "score"}}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "height": 400, "legend": {"tracegroupgap": 0}, "margin": {"t": 60}, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "title": {"text": "score"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "title": {"text": "subreddit"}}},
-                        {"responsive": true}
-                    ).then(function(){
-
-var gd = document.getElementById('65c57f41-a170-4b9f-8aa1-d8a184c280f5');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            </script>
-        </div>
+![png](project-reddit-analysis_files/project-reddit-analysis_66_0.png)
 
 
 ### Year 2019 
@@ -935,12 +1242,12 @@ top_2019_submitted.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot(
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f6515b14c50>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fe8707ce410>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_65_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_68_1.png)
 
 
 ### Subreddits generating the most comments, 2019
@@ -952,53 +1259,11 @@ fig = px.bar(top_subreddits_2019_bar.sort_values(by="num_comments"), y="subreddi
              hover_data=["subreddit"], color="num_comments",
              labels={"num_comments":'Nr of posts'}, height=400
             )
-fig.show()
+fig.show(renderer="png")
 ```
 
 
-<div>
-
-
-            <div id="b34d62e5-3d61-47c5-b10c-7e488bb3f75a" class="plotly-graph-div" style="height:400px; width:100%;"></div>
-            <script type="text/javascript">
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-
-                if (document.getElementById("b34d62e5-3d61-47c5-b10c-7e488bb3f75a")) {
-                    Plotly.newPlot(
-                        'b34d62e5-3d61-47c5-b10c-7e488bb3f75a',
-                        [{"alignmentgroup": "True", "customdata": [["chile"], ["dankmemes"], ["cuba"], ["espanol"], ["notArgentina"], ["latinoamerica"], ["Colombia"], ["ukwhistleblower"], ["de"], ["worldpolitics"]], "hovertemplate": "Nr of posts=%{marker.color}<br>subreddit=%{customdata[0]}<extra></extra>", "legendgroup": "", "marker": {"color": [1, 1, 2, 2, 3, 5, 6, 6, 10, 316], "coloraxis": "coloraxis"}, "name": "", "offsetgroup": "", "orientation": "h", "showlegend": false, "textposition": "auto", "type": "bar", "x": [1, 1, 2, 2, 3, 5, 6, 6, 10, 316], "xaxis": "x", "y": ["chile", "dankmemes", "cuba", "espanol", "notArgentina", "latinoamerica", "Colombia", "ukwhistleblower", "de", "worldpolitics"], "yaxis": "y"}],
-                        {"barmode": "relative", "coloraxis": {"colorbar": {"title": {"text": "Nr of posts"}}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "height": 400, "legend": {"tracegroupgap": 0}, "margin": {"t": 60}, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "title": {"text": "Nr of posts"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "title": {"text": "subreddit"}}},
-                        {"responsive": true}
-                    ).then(function(){
-
-var gd = document.getElementById('b34d62e5-3d61-47c5-b10c-7e488bb3f75a');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            </script>
-        </div>
+![png](project-reddit-analysis_files/project-reddit-analysis_70_0.png)
 
 
 # Analyzing content
@@ -1053,7 +1318,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_73_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_76_0.png)
 
 
 ### Posts by users banned in 2019
@@ -1068,7 +1333,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_75_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_78_0.png)
 
 
 ### Comments by all users
@@ -1083,7 +1348,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_77_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_80_0.png)
 
 
 # Sentiment Analysis
@@ -1124,52 +1389,11 @@ fig = go.Figure(data=[go.Bar(x=group["sentiment"], y=group["pos"], orientation='
                     marker_color=colors,)])
 
 fig.update_layout(title_text="Sentiment analysis of posts")
+fig.show(renderer="png")
 ```
 
 
-<div>
-
-
-            <div id="27e08cc8-f8f7-4399-aa7f-0dea057e0ee6" class="plotly-graph-div" style="height:525px; width:100%;"></div>
-            <script type="text/javascript">
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-
-                if (document.getElementById("27e08cc8-f8f7-4399-aa7f-0dea057e0ee6")) {
-                    Plotly.newPlot(
-                        '27e08cc8-f8f7-4399-aa7f-0dea057e0ee6',
-                        [{"marker": {"color": ["lightcoral", "lightblue", "lightgreen"]}, "orientation": "v", "type": "bar", "x": ["negative", "neutral", "positive"], "y": [665, 1431, 813]}],
-                        {"template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "title": {"text": "Sentiment analysis of posts"}},
-                        {"responsive": true}
-                    ).then(function(){
-
-var gd = document.getElementById('27e08cc8-f8f7-4399-aa7f-0dea057e0ee6');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            </script>
-        </div>
+![png](project-reddit-analysis_files/project-reddit-analysis_85_0.png)
 
 
 ### Sentiment analysis of comments
@@ -1181,52 +1405,11 @@ fig = go.Figure(data=[go.Bar(x=group["sentiment"], y=group["pos"], orientation='
                     marker_color=colors,)])
 
 fig.update_layout(title_text="Sentiment analysis of comments")
+fig.show(renderer="png")
 ```
 
 
-<div>
-
-
-            <div id="04cbcf3f-4961-457e-b60c-580f8911510f" class="plotly-graph-div" style="height:525px; width:100%;"></div>
-            <script type="text/javascript">
-                require(["plotly"], function(Plotly) {
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-
-                if (document.getElementById("04cbcf3f-4961-457e-b60c-580f8911510f")) {
-                    Plotly.newPlot(
-                        '04cbcf3f-4961-457e-b60c-580f8911510f',
-                        [{"marker": {"color": ["lightcoral", "lightblue", "lightgreen"]}, "orientation": "v", "type": "bar", "x": ["negative", "neutral", "positive"], "y": [414, 535, 787]}],
-                        {"template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "title": {"text": "Sentiment analysis of comments"}},
-                        {"responsive": true}
-                    ).then(function(){
-
-var gd = document.getElementById('04cbcf3f-4961-457e-b60c-580f8911510f');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })
-                };
-                });
-            </script>
-        </div>
+![png](project-reddit-analysis_files/project-reddit-analysis_87_0.png)
 
 
 ### Words used in positive and negative posts and comments 
@@ -1282,7 +1465,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_89_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_92_0.png)
 
 
 ### Wordcloud of all positive posts
@@ -1297,7 +1480,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_91_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_94_0.png)
 
 
 ### Wordcloud of all negative posts - banned in 2019
@@ -1312,7 +1495,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_93_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_96_0.png)
 
 
 ### Wordcloud of all positive posts - banned in 2019
@@ -1327,7 +1510,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_95_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_98_0.png)
 
 
 ### Wordcloud of all negative comments
@@ -1342,7 +1525,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_97_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_100_0.png)
 
 
 ### Wordcloud of all positive comments
@@ -1357,7 +1540,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_99_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_102_0.png)
 
 
 ### Wordcloud of all neutral posts
@@ -1372,7 +1555,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_101_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_104_0.png)
 
 
 ### Wordcloud of all neutral comments
@@ -1387,7 +1570,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_103_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_106_0.png)
 
 
 ### Wordcloud of all neutral posts - banned in 2019
@@ -1402,17 +1585,8 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_105_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_108_0.png)
 
-
-## To add? where users actives after 2016 elections?
-
-## Daily/Weekly Spikes to see coordinated posting
-
-
-```python
-
-```
 
 ### Unused
 

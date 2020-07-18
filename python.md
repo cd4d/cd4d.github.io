@@ -382,9 +382,283 @@ I imported the resulting data in a [Jupyter Notebook](https://github.com/cd4d/da
 
 Given the size of the notebook, I will summarize the main actions and results below.
 
-#### Importing and cleaning the data
+#### Importing the data
 
 ```python
 # import the json file containing data on 1001 banned Reddit users
 rawdata = pd.read_json("data-files/reddit-banned-users-DATA.json")
+rawdata.head()
 ```
+
+From the Python script I selected 6 kind of main data points for each user : 
+- **about** containing information about the user
+- **submitted** listing the posts the user created
+- **comments** listing the comments made by the user
+- **gilded** whether the user was awarded reddit gold
+- **trophies** various rewards by reddit such as 1 year membership
+- **banwave_year** the year the user was banned i.e 2018 or 2019
+
+As shown below, the data in each of these columns was still nested as <code>JSON</code> objects. 
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>about</th>
+      <th>submitted</th>
+      <th>comments</th>
+      <th>gilded</th>
+      <th>trophies</th>
+      <th>banwave_year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1488Reasons</th>
+      <td>{'is_employee': False, 'icon_img': 'https://ww...</td>
+      <td>{'modhash': '', 'dist': 1, 'children': [{'kind...</td>
+      <td>{'modhash': '', 'dist': 25, 'children': [{'kin...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'trophies': [{'kind': 't6', 'data': {'icon_70...</td>
+      <td>2018-May-09</td>
+    </tr>
+    <tr>
+      <th>20twony</th>
+      <td>{'is_employee': False, 'icon_img': 'https://ww...</td>
+      <td>{'modhash': '', 'dist': 1, 'children': [{'kind...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'trophies': [{'kind': 't6', 'data': {'icon_70...</td>
+      <td>2018-May-09</td>
+    </tr>
+    <tr>
+      <th>Abena_Tau</th>
+      <td>{'is_employee': False, 'icon_img': 'https://ww...</td>
+      <td>{'modhash': '', 'dist': 18, 'children': [{'kin...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'trophies': [{'kind': 't6', 'data': {'icon_70...</td>
+      <td>2018-May-09</td>
+    </tr>
+    <tr>
+      <th>Admiraf</th>
+      <td>{'is_employee': False, 'icon_img': 'https://ww...</td>
+      <td>{'modhash': '', 'dist': 1, 'children': [{'kind...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'trophies': [{'kind': 't6', 'data': {'icon_70...</td>
+      <td>2018-May-09</td>
+    </tr>
+    <tr>
+      <th>AdofynMorakus</th>
+      <td>{'is_employee': False, 'icon_img': 'https://ww...</td>
+      <td>{'modhash': '', 'dist': 1, 'children': [{'kind...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'modhash': '', 'dist': 0, 'children': [], 'af...</td>
+      <td>{'trophies': [{'kind': 't6', 'data': {'icon_70...</td>
+      <td>2018-May-09</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+#### Cleaning the data
+
+I created temporary dataframes in order to reach the data nested. 
+
+```python
+#deeper levels of nesting
+temp_trophies = json_normalize(rawdata["trophies"])
+gilded = json_normalize(rawdata["gilded"])
+
+# submitted and comments have deeper levels of nested json
+temp_submitted = json_normalize(rawdata["submitted"])
+temp_comments = json_normalize(rawdata["comments"])
+```
+
+To reach the data nested in the *comments*, *submitted* and *trophies* sections, I wrote a function that iterates through the data and appends it to a new list once it reached the data.
+
+```python
+# get to the "data" field in nested levels for "comments", "submitted" and "trophies"
+def go_to_data(node):
+    lst = []
+    for i in range(len(node)): # iterate through data series
+        entry = node.loc[i] # for clarity
+        if "children" in node:
+            container = "children"
+        elif "trophies" in node:
+            container = "trophies"
+        if len(entry[container]) > 0: 
+            for j in range(len(entry[container])):
+                lst.append(entry[container][j]["data"])
+    return json_normalize(lst)
+
+submitted =  go_to_data(temp_submitted)
+comments =  go_to_data(temp_comments)
+trophies = go_to_data(temp_trophies)
+```
+
+#### Submitted and comments, the main dataframes used
+
+A reddit user is characterized by what content they create or share and what comments they make. Hence I focused on the the *submitted* and *comments* dataframes obtained through the first stage of the data cleaning process.
+
+```python
+comments.shape
+    (1736, 40)
+```
+
+```python
+submitted.shape
+    (3933, 359)
+```
+
+#### More cleaning
+
+While the *comments* dataframe had a manageable 40 columns, *submitted* had 359, requiring more cleaning.
+
+Dropping duplicates is a start
+
+```python
+# dropping duplicates values
+submitted.drop_duplicates(subset="name", keep='first', inplace=True)
+comments.drop_duplicates(subset="body", keep='first', inplace=True)
+about.drop_duplicates(subset="name", keep='first', inplace=True)
+```
+
+I extracted information about metadata such as the url of images posted by users. Reddit organizes it in the json as such: media_metadata > s > u (url of image).
+
+```python
+# isolating nested media_metadata data: url (s.u) type (m))
+metadata_col_type = [ x for x in [x for x in submitted.columns if "media_metadata" in x] if ".m" in x]
+metadata_col_url = [ x for x in [x for x in submitted.columns if "media_metadata" in x] if "s.u" in x]
+metadata_col_id = [ x for x in [x for x in submitted.columns if "media_metadata" in x] if ".id" in x]
+```
+I then added the metadata information to new columns to the *submitted* dataframe in case of need.
+
+```python
+# consolidating the 60 metadata id and url columns into two new columns
+submitted["metadata_type"] = submitted[metadata_col_type].apply(lambda x: "".join(x.dropna().astype(str)), axis=1)
+submitted["metadata_url"] = submitted[metadata_col_url].apply(lambda x: "".join(x.dropna().astype(str)), axis=1)
+submitted["metadata_id"] = submitted[metadata_col_id].apply(lambda x: "".join(x.dropna().astype(str)), axis=1)
+```
+
+More cleaning followed
+
+```python
+# removing columns with "media_metadata" except type ("m") unique id and url
+submitted.drop([x for x in submitted.columns if "media_metadata" in x and x != "metadata_col_type" and x != "metadata_col_url" and x != "metadata_col_id"], axis=1, inplace=True)
+submitted.drop([x for x in submitted.columns if "secure_media" in x], axis=1, inplace=True)
+submitted.drop([x for x in submitted.columns if "media_embed" in x], axis=1, inplace=True)
+# removing media_oembed columns except "provider_name", "type", "url", "author_name"
+submitted.drop([x for x in submitted.columns if "media.oembed" in x and x != "media.oembed.provider_name" and x != "media.oembed.type" and x != "media.oembed.url" and x != "media.oembed.author_name"], axis=1, inplace=True)
+
+#removing columns about "flair"
+submitted.drop([x for x in submitted.columns if "flair" in x], axis=1, inplace=True)
+comments.drop([x for x in comments.columns if "flair" in x], axis=1, inplace=True)
+#removing columns about "thumbnail"
+submitted.drop([x for x in submitted.columns if "thumbnail" in x], axis=1, inplace=True)
+comments.drop([x for x in comments.columns if "thumbnail" in x], axis=1, inplace=True)
+# removing columns with "subreddit" in "about" since they all contain users subreddits
+about.drop([x for x in about.columns if "subreddit" in x], axis=1, inplace=True)
+# removing the u_reddit subreddit
+submitted.drop(submitted[submitted["subreddit"] == "u_reddit"].index, inplace=True)
+# dropping columns with all n/a values
+submitted.dropna(axis=1, how="all", inplace=True)
+comments.dropna(axis=1, how="all", inplace=True)
+about.dropna(axis=1, how="all", inplace=True)
+#other columns
+to_drop_submitted = ["subreddit_name_prefixed", "wls", "pwls", "allow_live_comments", 
+                     "content_categories", "preview.enabled", "whitelist_status", "send_replies",
+                    "post_hint", "is_robot_indexable","suggested_sort", "author_premium", "all_awardings",
+                    "preview.images", "preview.enabled", "subreddit_id", "parent_whitelist_status"]
+to_drop_comments = ["subreddit_name_prefixed", "all_awardings", "author_premium", "permalink"]
+submitted.drop(to_drop_submitted, axis=1, inplace=True)
+comments.drop(to_drop_comments, axis=1, inplace=True)
+```
+
+
+
+
+```python
+# select all columns where same value is in all rows
+def show_same_values(node):
+    return [x for x in node.columns if node[x].value_counts().iloc[0] == len(node[x])]
+```
+
+
+```python
+# drop these same values columns from the data
+submitted.drop(same_values_submitted, axis=1, inplace=True)
+comments.drop(same_values_comments, axis=1, inplace=True)
+```
+
+
+Reddit stores the dates in [Unix time](https://en.wikipedia.org/wiki/Unix_time), I wrote an function to convert them in a usable format. 
+
+```python
+# date conversion of "created_utc" and "edited" fields in "comments" and "submitted" tables
+def convert_dates(*args):
+    for node in args: #dealing with subsets
+        if "created_x_utc" in node.columns:
+            node["date_posted"] = pd.to_datetime(node["created_x_utc"], unit="s")
+        else:
+            node["date_created"] = pd.to_datetime(node["created_utc"], unit="s")
+            node["year_graph"] = pd.DatetimeIndex(node["date_created"]).year
+            node["year"] = pd.PeriodIndex(node["date_created"], freq='A')
+            node["month_nr"] = pd.PeriodIndex(node["date_created"], freq="M")
+            node["month"] = pd.DatetimeIndex(node["date_created"]).month_name()
+            node["day"] =pd.PeriodIndex(node["date_created"], freq="D")
+            node["day_of_week"] = pd.DatetimeIndex(node["date_created"]).day_name()       
+
+convert_dates(submitted, comments, about)
+# rename "date_created" columns in submitted and columns to avoid confusion
+submitted.rename(columns={"date_created": "date_posted"}, inplace=True)
+comments.rename(columns={"date_created": "date_posted"}, inplace=True)
+```
+#### Creating the data subsets for analysis
+
+I separated the cleaned data according to the year when users were banned.
+
+```python
+# creating subsets reflecting the 2018 and 2019 banwaves
+about_banwave_2018 = about[about["banwave_year"] == "2018-May-09"]
+about_banwave_2019 = about[about["banwave_year"] == "2019-Dec-06"]
+
+# merging with submitted and comments df using "about["name"]" and "["author"]" as key
+submitted_banwave_2018 = submitted.merge(about_banwave_2018, how="inner", left_on="author", right_on="name")
+submitted_banwave_2019 = submitted.merge(about_banwave_2019, how="inner", left_on="author", right_on="name")
+comments_banwave_2018 = comments.merge(about_banwave_2018, how="inner", left_on="author", right_on="name")
+comments_banwave_2019 = comments.merge(about_banwave_2019, how="inner", left_on="author", right_on="name")
+```
+
+## Analysis
+
+### Users banned in 2018
+
+
+```python
+# Create the figure and the axes
+fig, ax = plt.subplots()
+# Set limits and labels
+ax.set(title='Date of creation')
+
+banned_2018 = about_banwave_2018.groupby(["year", "month"]).count().sort_values(by="year")["id"].plot(kind="line")
+plt.xticks(rotation=25)
+```
+
+
+![png](./images/project-reddit-analysis_files/project-reddit-analysis_35_1.png)
