@@ -647,8 +647,14 @@ comments_banwave_2019 = comments.merge(about_banwave_2019, how="inner", left_on=
 
 ## Analysis
 
+In this section the code used to display the visualization is hidden by default.
+
 ### Users banned in 2018
 
+#### When were the accounts created?
+
+<details>
+<summary>Code</summary>
 
 ```python
 # Create the figure and the axes
@@ -659,6 +665,61 @@ ax.set(title='Date of creation')
 banned_2018 = about_banwave_2018.groupby(["year", "month"]).count().sort_values(by="year")["id"].plot(kind="line")
 plt.xticks(rotation=25)
 ```
-
+</details>
 
 ![png](./images/project-reddit-analysis_files/project-reddit-analysis_35_1.png)
+
+Almost all the users banned in 2018 created their accounts in early 2015, 3 years before being banned and 1 year and a half before the 2016 US presidential elections.
+
+#### Where did they post their content?
+
+<details>
+<summary>Code</summary>
+
+```python
+top_subreddits_2018 = submitted_banwave_2018.groupby("subreddit", as_index=False).count().sort_values(by="score", ascending=False).head()
+fig = px.bar(top_subreddits_2018.sort_values(by="score", ascending=True), y="subreddit", x="score",  orientation='h',
+             hover_data=["subreddit"], color="score",
+             labels={'Score':'Nr of posts'}, height=400
+            )
+fig.show(renderer="png")
+```
+</details>
+
+
+![png](./images/project-reddit-analysis_files/project-reddit-analysis_38_0.png)
+
+Looking at the popularity of these subreddit we have (as of July 2020):
+- [r/funny](https://www.reddit.com/r/funny/): 31.8m subscribers
+- [r/politicalhumor](https://www.reddit.com/r/politicalhumor/): 1m subscribers
+- [r/cryptocurrency](https://www.reddit.com/r/cryptocurrency/): 1.1m subscribers
+- [r/gifs](https://www.reddit.com/r/gifs/): 20.2m subscribers
+- [r/aww](https://www.reddit.com/r/aww/): 25.7m subscribers
+
+The users posted in popular and uncontroversial subreddits as well as more niche ones. [r/funny](https://www.reddit.com/r/funny/), [r/gifs](https://www.reddit.com/r/gifs/) and [r/aww](https://www.reddit.com/r/aww/) could have been used to easily get reddit karma which are points awarded by other reddit users to appreciate a comment or a post. A user with a high karma score is usually seen as reputable and influential.
+
+The other subreddits, [r/politicalhumor](https://www.reddit.com/r/politicalhumor/) and [r/cryptocurrency](https://www.reddit.com/r/cryptocurrency/) have less following but by the nature of their topics can be readily used to convey political message. 
+
+### Users banned in 2019
+
+#### When were the accounts created?
+
+<details>
+<summary>Code</summary>
+
+
+</details>
+
+
+TODO
+
+#### Where did they post their content?
+
+<details>
+<summary>Code</summary>
+
+
+</details>
+
+
+TODO
