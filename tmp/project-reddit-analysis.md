@@ -1002,7 +1002,7 @@ plt.xticks(rotation=25)
 ![png](project-reddit-analysis_files/project-reddit-analysis_42_1.png)
 
 
-### Subreddits most used by users banned in 2018
+### Subreddits most used by users banned in 2019
 
 
 ```python
@@ -1041,25 +1041,6 @@ yearly_trend_submitted.groupby(pd.Grouper(key='date_posted', freq='M')).size().p
 ![png](project-reddit-analysis_files/project-reddit-analysis_47_1.png)
 
 
-### Spikes in post, by months
-
-
-```python
-#  Posts 
-yearly_trend_submitted = submitted[["score", "author", "subreddit", "title","date_posted"]]
-monthly_trend = yearly_trend_submitted.groupby(pd.Grouper(key='date_posted', freq='M'), as_index=False).size().sort_index()
-monthly_trend[monthly_trend > 20].plot()
-```
-
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fe88a101250>
-
-
-
-
-![png](project-reddit-analysis_files/project-reddit-analysis_49_1.png)
 
 
 ### Comments
@@ -1070,11 +1051,6 @@ monthly_trend[monthly_trend > 20].plot()
 yearly_trend_comments = comments[["score", "author", "subreddit","link_title", "body","date_posted"]].sort_values(by="score", ascending=False)
 yearly_trend_comments.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
 ```
-
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fe88a0f0310>
 
 
 

@@ -607,7 +607,7 @@ comments.drop(same_values_comments, axis=1, inplace=True)
 ```
 
 
-Reddit stores the dates in [Unix time](https://en.wikipedia.org/wiki/Unix_time), I wrote an function to convert them in a usable format. 
+Reddit stores the dates in [Unix time](https://en.wikipedia.org/wiki/Unix_time), I wrote a function to convert them in a usable format. 
 
 ```python
 # date conversion of "created_utc" and "edited" fields in "comments" and "submitted" tables
@@ -702,24 +702,118 @@ The other subreddits, [r/politicalhumor](https://www.reddit.com/r/politicalhumor
 
 ### Users banned in 2019
 
+While the number of users banned in 2019 is much smaller than that of 2018 (61 vs. 944), we can still look into the same question to see if there are similarities.
+
 #### When were the accounts created?
 
 <details>
 <summary>Code</summary>
 
-
+fig, ax = plt.subplots()
+ax.set(title='Date of creation')
+about_banwave_2019.groupby(["year", "month"]).count().sort_values(by="year")["id"].plot(kind="line")
+plt.xticks(rotation=25)
 </details>
 
+![png](images/project-reddit-analysis_files/project-reddit-analysis_42_1.png)
 
-TODO
+There is a big spike in accounts creation in mid 2019 and smaller ones in the preceding years starting mid 2017.  
 
 #### Where did they post their content?
 
 <details>
 <summary>Code</summary>
 
-
+```python
+#top_subreddits_2019.sort_values().plot(kind="barh")
+top_subreddits_2019 = submitted_banwave_2019.groupby("subreddit", as_index=False).count().sort_values(by="score", ascending=False).head(7)
+fig = px.bar(top_subreddits_2019.sort_values(by="score", ascending=True), y="subreddit", x="score",  orientation='h',
+             hover_data=["subreddit"], color="score",
+             labels={'Score':'Nr of posts'}, height=400
+            )
+fig.show(renderer="png")
+```
 </details>
 
+![png](images/project-reddit-analysis_files/project-reddit-analysis_44_0.png)
 
-TODO
+This graph is much different than the 2018 one. It is clear that the users were focused on European issues, with the most used subreddits being (as of july 2020):
+
+- [europe](https://www.reddit.com/r/europe/): 2.5m users
+- [spain](https://www.reddit.com/r/spain/): 45k users
+- [es](https://www.reddit.com/r/es/): 50k users
+- [espanol](https://www.reddit.com/r/espanol/): 37k users
+- [noticias_en_espanol](https://www.reddit.com/r/noticias_en_espanol/) 968 users
+- [vzla](https://www.reddit.com/r/vzla): 62k users
+- [france](https://www.reddit.com/r/france/): 366k users
+
+However the sample size being so small, it would just take a few banned users to skew the results. Nonetheless, it seems that the efforts of the users were targeted at a different audience than in 2018.
+
+### Yearly trends
+
+#### Postings activity
+
+<details>
+<summary>Code</summary>
+
+```python
+#  Posts 
+yearly_trend_submitted = submitted[["score", "author", "subreddit", "title","date_posted"]]
+monthly_trend = yearly_trend_submitted.groupby(pd.Grouper(key='date_posted', freq='M'), as_index=False).size().sort_index()
+monthly_trend[monthly_trend > 20].plot()
+```
+</details>
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_49_1.png)
+
+Of notice is the large spike in postings in late 2015, followed by smaller ones in late 2016 and mid 2018. 
+
+### Comments acrivity
+
+<details>
+<summary>Code</summary>
+
+```python
+#  Comments 
+yearly_trend_comments = comments[["score", "author", "subreddit","link_title", "body","date_posted"]].sort_values(by="score", ascending=False)
+yearly_trend_comments.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
+```
+</details>
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_51_1.png)
+
+As for comments, 2015-2017 were active years but the large spike of activity is in the first qurter of 2018.
+
+### Year 2016 - US Election
+
+### Spike in posts months prior to the 2016 election
+
+<details>
+<summary>Code</summary>
+
+```python
+#  Posts for the year 2016 - peak in september 2016
+top_2016_submitted = submitted[submitted["year"] == "2016"].sort_values(by="score", ascending=False)
+top_2016_submitted.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
+```
+</details>
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_56_1.png)
+
+If we look at the data from 2016, there is a clear spike of posting activity in the months prior to the November 2016 US election.
+
+###  Comments pattern in 2016
+
+<details>
+<summary>Code</summary>
+
+```python
+#  Comments for the year 2016 - 
+comments_2016 = comments[comments["year"] == "2016"].sort_values(by="id", ascending=False)
+comments_2016.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
+```
+</details>
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_64_1.png)
+
+The comments follow a similar pattern in spite of being a bit more even throughout the year.
