@@ -816,4 +816,108 @@ comments_2016.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
 
 ![png](images/project-reddit-analysis_files/project-reddit-analysis_64_1.png)
 
-The comments follow a similar pattern in spite of being a bit more even throughout the year.
+The comments follow a similar pattern throughout the year.
+
+### Year 2019 - UK Election
+
+### Spike in posts months prior to the 2019 election
+
+<details>
+<summary>Code</summary>
+
+```python
+#  Posts for the year 2019 - 
+top_2019_submitted = submitted[submitted["year"] == "2019"][["score", "author", "subreddit", "title","date_posted"]].sort_values(by="score", ascending=False)
+top_2019_submitted.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
+```
+</details>
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_71_1.png)
+
+TODO
+
+###  Comments pattern in 2019
+
+<details>
+<summary>Code</summary>
+
+```python
+#  Comments for the year 2019 - 
+top_2019_comments = comments[comments["year"] == "2019"].sort_values(by="score", ascending=False)
+top_2019_comments.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
+```
+</details>
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_70_1.png)
+
+TODO
+
+### Content analysis
+
+<details>
+<summary>Code</summary>
+
+```python
+# https://github.com/dend/data-explorations/blob/master/notebooks/sentiment-analysis-reddit.ipynb
+sia = SentimentIntensityAnalyzer()
+def analyze_content(title):
+    text_list = []
+    for line in title:
+        pol_score = sia.polarity_scores(line)
+        pol_score['text'] = line
+        text_list.append(pol_score)
+    result = pd.DataFrame.from_records(text_list)
+    result["sentiment"] = 0
+    result.loc[result["compound"] > 0.1, "sentiment"] = "positive"
+    result.loc[result["compound"] < -0.1, "sentiment"] = "negative"
+    result.loc[result["compound"].between(-0.1, 0.1) , "sentiment"] = "neutral"
+    return result
+
+sentiment_analysis_submitted = analyze_content(submitted["title"])
+sentiment_analysis_comments = analyze_content(comments["body"])
+sentiment_analysis_submitted_banwave_2019 = analyze_content(submitted_banwave_2019["title"])
+```
+</details>
+
+
+## Sentiment analysis of posts
+
+<details>
+<summary>Code</summary>
+
+```python
+group = sentiment_analysis_submitted.groupby("sentiment", as_index=False).count()
+colors = ["lightcoral", "lightblue", "lightgreen"]
+fig = go.Figure(data=[go.Bar(x=group["sentiment"], y=group["pos"], orientation='v',
+                    marker_color=colors,)])
+
+fig.update_layout(title_text="Sentiment analysis of posts")
+fig.show(renderer="png")
+```
+</details>
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_88_0.png)
+
+
+TODO
+
+### Sentiment analysis of comments
+
+<details>
+<summary>Code</summary>
+
+```python
+group = sentiment_analysis_comments.groupby("sentiment", as_index=False).count()
+fig = go.Figure(data=[go.Bar(x=group["sentiment"], y=group["pos"], orientation='v',
+                    marker_color=colors,)])
+
+fig.update_layout(title_text="Sentiment analysis of comments")
+fig.show(renderer="png")
+```
+</details>
+
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_90_0.png)
+
+TODO
+

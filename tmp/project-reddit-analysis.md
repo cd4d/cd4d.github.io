@@ -40,6 +40,86 @@ nltk.download("popular")
 nltk.download('punkt')
 ```
 
+    Requirement already satisfied: wordcloud in /Users/k/opt/anaconda3/lib/python3.7/site-packages (1.6.0)
+    Requirement already satisfied: numpy>=1.6.1 in /Users/k/opt/anaconda3/lib/python3.7/site-packages (from wordcloud) (1.17.2)
+    Requirement already satisfied: matplotlib in /Users/k/opt/anaconda3/lib/python3.7/site-packages (from wordcloud) (3.1.1)
+    Requirement already satisfied: pillow in /Users/k/opt/anaconda3/lib/python3.7/site-packages (from wordcloud) (6.2.0)
+    Requirement already satisfied: cycler>=0.10 in /Users/k/opt/anaconda3/lib/python3.7/site-packages (from matplotlib->wordcloud) (0.10.0)
+    Requirement already satisfied: kiwisolver>=1.0.1 in /Users/k/opt/anaconda3/lib/python3.7/site-packages (from matplotlib->wordcloud) (1.1.0)
+    Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /Users/k/opt/anaconda3/lib/python3.7/site-packages (from matplotlib->wordcloud) (2.4.2)
+    Requirement already satisfied: python-dateutil>=2.1 in /Users/k/opt/anaconda3/lib/python3.7/site-packages (from matplotlib->wordcloud) (2.8.0)
+    Requirement already satisfied: six in /Users/k/opt/anaconda3/lib/python3.7/site-packages (from cycler>=0.10->matplotlib->wordcloud) (1.12.0)
+    Requirement already satisfied: setuptools in /Users/k/opt/anaconda3/lib/python3.7/site-packages (from kiwisolver>=1.0.1->matplotlib->wordcloud) (41.4.0)
+    Note: you may need to restart the kernel to use updated packages.
+
+
+    [nltk_data] Downloading package vader_lexicon to /Users/k/nltk_data...
+    [nltk_data]   Package vader_lexicon is already up-to-date!
+    [nltk_data] Downloading collection 'popular'
+    [nltk_data]    | 
+    [nltk_data]    | Downloading package cmudict to /Users/k/nltk_data...
+    [nltk_data]    |   Package cmudict is already up-to-date!
+    [nltk_data]    | Downloading package gazetteers to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package gazetteers is already up-to-date!
+    [nltk_data]    | Downloading package genesis to /Users/k/nltk_data...
+    [nltk_data]    |   Package genesis is already up-to-date!
+    [nltk_data]    | Downloading package gutenberg to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package gutenberg is already up-to-date!
+    [nltk_data]    | Downloading package inaugural to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package inaugural is already up-to-date!
+    [nltk_data]    | Downloading package movie_reviews to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package movie_reviews is already up-to-date!
+    [nltk_data]    | Downloading package names to /Users/k/nltk_data...
+    [nltk_data]    |   Package names is already up-to-date!
+    [nltk_data]    | Downloading package shakespeare to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package shakespeare is already up-to-date!
+    [nltk_data]    | Downloading package stopwords to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package stopwords is already up-to-date!
+    [nltk_data]    | Downloading package treebank to /Users/k/nltk_data...
+    [nltk_data]    |   Package treebank is already up-to-date!
+    [nltk_data]    | Downloading package twitter_samples to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package twitter_samples is already up-to-date!
+    [nltk_data]    | Downloading package omw to /Users/k/nltk_data...
+    [nltk_data]    |   Package omw is already up-to-date!
+    [nltk_data]    | Downloading package wordnet to /Users/k/nltk_data...
+    [nltk_data]    |   Package wordnet is already up-to-date!
+    [nltk_data]    | Downloading package wordnet_ic to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package wordnet_ic is already up-to-date!
+    [nltk_data]    | Downloading package words to /Users/k/nltk_data...
+    [nltk_data]    |   Package words is already up-to-date!
+    [nltk_data]    | Downloading package maxent_ne_chunker to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package maxent_ne_chunker is already up-to-date!
+    [nltk_data]    | Downloading package punkt to /Users/k/nltk_data...
+    [nltk_data]    |   Package punkt is already up-to-date!
+    [nltk_data]    | Downloading package snowball_data to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package snowball_data is already up-to-date!
+    [nltk_data]    | Downloading package averaged_perceptron_tagger to
+    [nltk_data]    |     /Users/k/nltk_data...
+    [nltk_data]    |   Package averaged_perceptron_tagger is already up-
+    [nltk_data]    |       to-date!
+    [nltk_data]    | 
+    [nltk_data]  Done downloading collection popular
+    [nltk_data] Downloading package punkt to /Users/k/nltk_data...
+    [nltk_data]   Package punkt is already up-to-date!
+
+
+
+
+
+    True
+
+
+
 
 ```python
 # import the json file containint data on 1001 banned Reddit users
@@ -394,6 +474,195 @@ submitted.head()
   </tbody>
 </table>
 <p>5 rows × 359 columns</p>
+</div>
+
+
+
+
+```python
+comments.shape
+```
+
+
+
+
+    (1776, 72)
+
+
+
+
+```python
+comments.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>awarders</th>
+      <th>total_awards_received</th>
+      <th>approved_at_utc</th>
+      <th>link_title</th>
+      <th>mod_reason_by</th>
+      <th>banned_by</th>
+      <th>author_flair_type</th>
+      <th>removal_reason</th>
+      <th>link_id</th>
+      <th>author_flair_template_id</th>
+      <th>...</th>
+      <th>controversiality</th>
+      <th>locked</th>
+      <th>author_flair_background_color</th>
+      <th>collapsed_because_crowd_control</th>
+      <th>mod_reports</th>
+      <th>quarantine</th>
+      <th>subreddit_type</th>
+      <th>ups</th>
+      <th>gildings.gid_1</th>
+      <th>gildings.gid_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[]</td>
+      <td>0</td>
+      <td>None</td>
+      <td>The top tenth of Kiwis hold well over half of ...</td>
+      <td>None</td>
+      <td>None</td>
+      <td>text</td>
+      <td>None</td>
+      <td>t3_4q6zhk</td>
+      <td>None</td>
+      <td>...</td>
+      <td>0</td>
+      <td>False</td>
+      <td></td>
+      <td>None</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>public</td>
+      <td>-6</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[]</td>
+      <td>0</td>
+      <td>None</td>
+      <td>NZ Muslims returning home complain of 'profili...</td>
+      <td>None</td>
+      <td>None</td>
+      <td>text</td>
+      <td>None</td>
+      <td>t3_4q7hpd</td>
+      <td>None</td>
+      <td>...</td>
+      <td>1</td>
+      <td>False</td>
+      <td></td>
+      <td>None</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>public</td>
+      <td>7</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[]</td>
+      <td>0</td>
+      <td>None</td>
+      <td>The top tenth of Kiwis hold well over half of ...</td>
+      <td>None</td>
+      <td>None</td>
+      <td>text</td>
+      <td>None</td>
+      <td>t3_4q6zhk</td>
+      <td>None</td>
+      <td>...</td>
+      <td>0</td>
+      <td>False</td>
+      <td></td>
+      <td>None</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>public</td>
+      <td>-8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[]</td>
+      <td>0</td>
+      <td>None</td>
+      <td>The top tenth of Kiwis hold well over half of ...</td>
+      <td>None</td>
+      <td>None</td>
+      <td>text</td>
+      <td>None</td>
+      <td>t3_4q6zhk</td>
+      <td>None</td>
+      <td>...</td>
+      <td>0</td>
+      <td>False</td>
+      <td></td>
+      <td>None</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>public</td>
+      <td>-6</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[]</td>
+      <td>0</td>
+      <td>None</td>
+      <td>You Shouldn’t Dream Here: On the tragic Auckla...</td>
+      <td>None</td>
+      <td>None</td>
+      <td>text</td>
+      <td>None</td>
+      <td>t3_4no6eh</td>
+      <td>None</td>
+      <td>...</td>
+      <td>1</td>
+      <td>False</td>
+      <td></td>
+      <td>None</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>public</td>
+      <td>-5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 72 columns</p>
 </div>
 
 
@@ -935,7 +1204,7 @@ plt.xticks(rotation=25)
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_35_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_37_1.png)
 
 
 
@@ -962,7 +1231,7 @@ fig.show(renderer="png")
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_38_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_40_0.png)
 
 
 
@@ -999,10 +1268,10 @@ plt.xticks(rotation=25)
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_42_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_44_1.png)
 
 
-### Subreddits most used by users banned in 2019
+### Subreddits most used by users banned in 2018
 
 
 ```python
@@ -1016,7 +1285,7 @@ fig.show(renderer="png")
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_44_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_46_0.png)
 
 
 ### Yearly trends
@@ -1033,14 +1302,33 @@ yearly_trend_submitted.groupby(pd.Grouper(key='date_posted', freq='M')).size().p
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fe882e56610>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f8b1291aad0>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_47_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_49_1.png)
 
 
+### Spikes in post, by months
+
+
+```python
+#  Posts 
+yearly_trend_submitted = submitted[["score", "author", "subreddit", "title","date_posted"]]
+monthly_trend = yearly_trend_submitted.groupby(pd.Grouper(key='date_posted', freq='M'), as_index=False).size().sort_index()
+monthly_trend[monthly_trend > 20].plot()
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f8b1006b910>
+
+
+
+
+![png](project-reddit-analysis_files/project-reddit-analysis_51_1.png)
 
 
 ### Comments
@@ -1055,7 +1343,12 @@ yearly_trend_comments.groupby(pd.Grouper(key='date_posted', freq='M')).size().pl
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_51_1.png)
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f8b12958250>
+
+
+
+
+![png](project-reddit-analysis_files/project-reddit-analysis_53_1.png)
 
 
 ### Subreddits with most upvoted comments
@@ -1073,7 +1366,7 @@ fig.show(renderer="png")
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_53_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_55_0.png)
 
 
 ### Year 2016 - US Election
@@ -1090,12 +1383,12 @@ top_2016_submitted.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot(
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fe88a0b1e10>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f8b143c4790>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_56_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_58_1.png)
 
 
 
@@ -1108,12 +1401,12 @@ top_2016_submitted.groupby(pd.Grouper(key='date_posted', freq='W')).size().plot(
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fe882975550>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f8b12a2a9d0>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_57_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_59_1.png)
 
 
 
@@ -1130,12 +1423,12 @@ top_late_2016.groupby(pd.Grouper(key='date_posted', freq='D')).size().plot()
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fe88a0e6910>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f8b146cee90>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_58_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_60_1.png)
 
 
 ### Subreddits where the users were most active, 2016
@@ -1151,7 +1444,7 @@ fig.show(renderer="png")
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_60_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_62_0.png)
 
 
 ### Subreddit with posts generating the most comments, 2016
@@ -1167,7 +1460,7 @@ fig.show(renderer="png")
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_62_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_64_0.png)
 
 
 ###  Top comments in 2016
@@ -1182,12 +1475,12 @@ comments_2016.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fe88a0d0250>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f8b14922290>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_64_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_66_1.png)
 
 
 ### Subreddits with most upvoted comments, 2016
@@ -1203,10 +1496,28 @@ fig.show(renderer="png")
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_66_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_68_0.png)
 
 
 ### Year 2019 
+
+
+```python
+#  Comments for the year 2019 - 
+top_2019_comments = comments[comments["year"] == "2019"].sort_values(by="score", ascending=False)
+top_2019_comments.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f8b1a0f9490>
+
+
+
+
+![png](project-reddit-analysis_files/project-reddit-analysis_70_1.png)
+
 
 
 ```python
@@ -1218,12 +1529,12 @@ top_2019_submitted.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot(
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fe8707ce410>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f8b19d1c4d0>
 
 
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_68_1.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_71_1.png)
 
 
 ### Subreddits generating the most comments, 2019
@@ -1239,7 +1550,7 @@ fig.show(renderer="png")
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_70_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_73_0.png)
 
 
 # Analyzing content
@@ -1294,7 +1605,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_76_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_79_0.png)
 
 
 ### Posts by users banned in 2019
@@ -1309,7 +1620,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_78_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_81_0.png)
 
 
 ### Comments by all users
@@ -1324,7 +1635,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_80_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_83_0.png)
 
 
 # Sentiment Analysis
@@ -1369,7 +1680,7 @@ fig.show(renderer="png")
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_85_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_88_0.png)
 
 
 ### Sentiment analysis of comments
@@ -1385,7 +1696,7 @@ fig.show(renderer="png")
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_87_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_90_0.png)
 
 
 ### Words used in positive and negative posts and comments 
@@ -1441,7 +1752,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_92_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_95_0.png)
 
 
 ### Wordcloud of all positive posts
@@ -1456,7 +1767,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_94_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_97_0.png)
 
 
 ### Wordcloud of all negative posts - banned in 2019
@@ -1471,7 +1782,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_96_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_99_0.png)
 
 
 ### Wordcloud of all positive posts - banned in 2019
@@ -1486,7 +1797,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_98_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_101_0.png)
 
 
 ### Wordcloud of all negative comments
@@ -1501,7 +1812,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_100_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_103_0.png)
 
 
 ### Wordcloud of all positive comments
@@ -1516,7 +1827,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_102_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_105_0.png)
 
 
 ### Wordcloud of all neutral posts
@@ -1531,7 +1842,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_104_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_107_0.png)
 
 
 ### Wordcloud of all neutral comments
@@ -1546,7 +1857,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_106_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_109_0.png)
 
 
 ### Wordcloud of all neutral posts - banned in 2019
@@ -1561,7 +1872,7 @@ plt.show()
 ```
 
 
-![png](project-reddit-analysis_files/project-reddit-analysis_108_0.png)
+![png](project-reddit-analysis_files/project-reddit-analysis_111_0.png)
 
 
 ### Unused
