@@ -2,6 +2,8 @@
 layout: page
 title: Python data analysis
 ---
+# Reddit users banned for "interference", analysis with Python/Pandas
+
 <a id="top"></a>
 
 # Table of contents
@@ -10,7 +12,6 @@ title: Python data analysis
     1. [Sub paragraph](#subparagraph1)
 3. [Another paragraph](#paragraph2)
 
-## Reddit users banned for "interference" 2018 - 2019
 
 ### Context: <a name="context"></a>
 In 2018 Reddit [banned 944 accounts](https://www.reddit.com/r/announcements/comments/8bb85p/reddits_2017_transparency_report_and_suspect/) on suspicion of interference by the Russian government in US politics.
@@ -880,7 +881,7 @@ sentiment_analysis_submitted_banwave_2019 = analyze_content(submitted_banwave_20
 </details>
 
 
-## Sentiment analysis of posts
+#### Sentiment analysis of posts
 
 <details>
 <summary>Code</summary>
@@ -901,7 +902,7 @@ fig.show(renderer="png")
 
 TODO
 
-### Sentiment analysis of comments
+#### Sentiment analysis of comments
 
 <details>
 <summary>Code</summary>
@@ -920,4 +921,64 @@ fig.show(renderer="png")
 ![png](images/project-reddit-analysis_files/project-reddit-analysis_90_0.png)
 
 TODO
+
+#### Words used in posts - users banned in 2018
+
+
+<details>
+<summary>Code</summary>
+
+```python
+# Wordcloud of submission titles users banned in 2018
+submitted_2018_wordcloud = WordCloud(max_words=15, background_color="white").generate(' '.join(submitted_banwave_2018_stemmed_text))
+
+plt.imshow(submitted_2018_wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.show()
+```
+</details>
+
+
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_79_0.png)
+
+
+#### Words used in posts - users banned in 2019
+
+
+<details>
+<summary>Code</summary>
+
+```python
+# Wordcloud of submitssion titles users banned in 2019
+submitted_2019_wordcloud = WordCloud(collocations=True, max_words=15, background_color="white").generate(' '.join(submitted_banwave_2019_lemmarized_text))
+plt.imshow(submitted_2019_wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.show()
+```
+</details>
+
+
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_81_0.png)
+
+
+#### Comments by all users
+
+<details>
+<summary>Code</summary>
+
+```python
+# wordcloud of all comments
+comments_wordcloud = WordCloud(max_words=15, background_color="white").generate(" ".join(comments_lemmarized_text))
+plt.imshow(comments_wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.show()
+```
+</details>
+
+
+![png](images/project-reddit-analysis_files/project-reddit-analysis_83_0.png)
+
+
 
