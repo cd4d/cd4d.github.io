@@ -6,11 +6,47 @@ title: Python data analysis
 
 <a id="top"></a>
 
-# Table of contents
-1. [Context](#context)
-2. [Data retrieval](#data-retrieval)
-    1. [Sub paragraph](#subparagraph1)
-3. [Another paragraph](#paragraph2)
+<details>
+<summary>Table of contents</summary>
+
+  * [Context:](#context-)
+  * [Data retrieval](#data-retrieval-)
+    + [Understanding Reddit data](#understanding-reddit-data)
+    + [Getting the list of users](#getting-the-list-of-users)
+    + [Extracting the usernames](#extracting-the-usernames)
+    + [Fetching data from banned users](#fetching-data-from-banned-users)
+  * [Data preparation and analysis with pandas](#data-preparation-and-analysis-with-pandas)
+    + [Importing the data](#importing-the-data)
+    + [Cleaning the data](#cleaning-the-data)
+    + [Submitted and comments, the main dataframes used](#submitted-and-comments-the-main-dataframes-used)
+    + [More cleaning](#more-cleaning)
+    + [Creating the data subsets for analysis](#creating-the-data-subsets-for-analysis)
+- [Analysis](#analysis)
+  * [Users banned in 2018](#users-banned-in-2018)
+    + [When were the accounts created?](#when-were-the-accounts-created)
+    + [Where did they post their content?](#where-did-they-post-their-content)
+  * [Users banned in 2019](#users-banned-in-2019)
+    + [When were the accounts created?](#when-were-the-accounts-created-1)
+    + [Where did they post their content?](#where-did-they-post-their-content-1)
+  * [Yearly trends](#yearly-trends)
+    + [Postings activity](#postings-activity)
+  * [Comments activity](#comments-activity)
+  * [Year 2016 - US Election](#year-2016---us-election)
+  * [Spike in posts months prior to the 2016 election](#spike-in-posts-months-prior-to-the-2016-election)
+  * [Comments pattern in 2016](#comments-pattern-in-2016)
+  * [Year 2019 - UK Election](#year-2019---uk-election)
+  * [Spike in posts months prior to the 2019 election](#spike-in-posts-months-prior-to-the-2019-election)
+  * [Comments pattern in 2019](#comments-pattern-in-2019)
+  * [Content analysis](#content-analysis)
+    + [Sentiment analysis of posts](#sentiment-analysis-of-posts)
+    + [Sentiment analysis of comments](#sentiment-analysis-of-comments)
+    + [Words used in posts - users banned in 2018](#words-used-in-posts---users-banned-in-2018)
+    + [Words used in posts - users banned in 2019](#words-used-in-posts---users-banned-in-2019)
+    + [Comments by all users](#comments-by-all-users)
+</details>
+
+### Technologies used
+Python 3, Pandas, Plotly, Jupyter Notebook
 
 
 ### Context: <a name="context"></a>
@@ -769,7 +805,7 @@ monthly_trend[monthly_trend > 20].plot()
 
 Of notice is the large spike in postings in late 2015, followed by smaller ones in late 2016 and mid 2018. 
 
-### Comments acrivity
+### Comments activity
 
 <details>
 <summary>Code</summary>

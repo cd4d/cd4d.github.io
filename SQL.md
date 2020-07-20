@@ -1,19 +1,38 @@
 ---
 layout: page
-title: Data analysis with SQL queries
+title: Data analysis with SQL query
 ---
-# Data analysis with SQL queries
 
 
-<a id="top"></a>
 
-# Table of contents
-1. [Context](#context)
-2. [Data retrieval](#data-retrieval)
-    1. [Sub paragraph](#subparagraph1)
-3. [Another paragraph](#paragraph2)
+# Data analysis with SQL query
+
+<details>
+<summary>Table of contents</summary>
+
+  * [Technologies used](#technologies-used)
+  * [Summary and dataset](#summary-and-dataset)
+  * [Findings](#findings)
+    + [Counties](#counties)
+      - [Per capita spending – counties with 100k+ population](#per-capita-spending-%E2%80%93-counties-with-100k-population)
+      - [Sales by stores – counties with 100k+ population](#sales-by-stores-%E2%80%93-counties-with-100k-population)
+    + [Stores](#stores)
+    + [Products](#products)
+        * [Total sales: $392,293,023](#total-sales-392293023)
+    + [Margins](#margins)
+    + [Timeframe](#timeframe)
+        * [Daily trend](#daily-trend)
+        * [No data on Sundays:](#no-data-on-sundays)
+      - [Yearly change / growth](#yearly-change--growth)
+  * [Analysis](#analysis)
+    + [Counties:](#counties)
+    + [Stores:](#stores)
+    + [Products:](#products)
+    + [Yearly changes:](#yearly-changes)
+</details>
 
 ### Technologies used
+PostgreSQL, pgAdmin
 
 ## Summary and dataset
 
@@ -108,7 +127,7 @@ group by  a.county, b.population order by 2 desc limit 100
 ### Stores
 
 <details>
-<summary>SQL queries</summary>
+<summary>SQL query</summary>
 
 ```SQL 
  -- How many stores: 1973 stores, 1425 active stores, 548 inactive
@@ -174,7 +193,7 @@ wholesale.
 ### Products
 
 <details>
-<summary>SQL queries</summary>
+<summary>SQL query</summary>
 
 ```SQL 
 /*** GA Project SQL - 2014 monthly growth of top products ****/
@@ -316,7 +335,7 @@ sales.
 ### Margins
 
 <details>
-<summary>SQL queries</summary>
+<summary>SQL query</summary>
 
 ```SQL 
 -- Products with the highest profit / margin by unit: 
@@ -359,7 +378,7 @@ The only products with a margin higher than 50% are niche products.
 ### Timeframe
 
 <details>
-<summary>SQL queries</summary>
+<summary>SQL query</summary>
 
 ```SQL 
 -- monthly sales
@@ -466,12 +485,12 @@ Significant drop in sales from May 2014 onward.
 <details>
 <summary>SQL query</summary>
 
-```SQL 
--- per store spending,  only counties with 100k+ pop:
-select a.county,b.population, count(distinct store) as num_stores,sum(total)::money as total_sales, cast(sum(a.total) / count(distinct store) as money) as total_per_store from sales a
-inner join counties b using(county) 
-where b.population >= 100000
-group by  a.county, b.population order by 2 desc limit 100
+```SQL
+-- Sales by day of the week
+select sum(total)::money as total_sales, to_char(date, 'Day') as day_of_sale
+from sales
+group by day_of_sale
+order by day_of_sale desc
 ```
 </details>
 
@@ -494,11 +513,97 @@ their basic license. *
 <summary>SQL query</summary>
 
 ```SQL 
--- per store spending,  only counties with 100k+ pop:
-select a.county,b.population, count(distinct store) as num_stores,sum(total)::money as total_sales, cast(sum(a.total) / count(distinct store) as money) as total_per_store from sales a
-inner join counties b using(county) 
-where b.population >= 100000
-group by  a.county, b.population order by 2 desc limit 100
+-- Item making most sales: black velvet, hawkeye vodka
+select a.description, a.category_name, sum(total)::money as total_sales, total_sales_jan, total_sales_feb, total_sales_mar, total_sales_apr, total_sales_may, total_sales_jun, total_sales_jul, total_sales_aug, total_sales_sep,
+total_sales_oct, total_sales_nov, total_sales_dec from sales a
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_jan
+from sales where date between '2014-01-01' and '2014-01-31' 
+group by description, category_name order by 3 desc limit 10) as jan
+using (description)
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_feb 
+from sales where date between '2014-02-01' and '2014-02-28' 
+group by description, category_name order by 3 desc limit 10) as feb
+using (description) 
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_mar
+from sales where date between '2014-03-01' and '2014-03-31' 
+group by description, category_name order by 3 desc limit 10) as mar
+using (description) 
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_apr
+from sales where date between '2014-04-01' and '2014-04-30' 
+group by description, category_name order by 3 desc limit 10) as apr
+using (description) 
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_may 
+from sales where date between '2014-05-01' and '2014-05-31' 
+group by description, category_name order by 3 desc limit 10) as may
+using (description) 
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_jun
+from sales where date between '2014-06-01' and '2014-06-30' 
+group by description, category_name order by 3 desc limit 10) as jun
+using (description) 
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_jul
+from sales where date between '2014-07-01' and '2014-07-31' 
+group by description, category_name order by 3 desc limit 10) as jul
+using (description) 
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_aug
+from sales where date between '2014-08-01' and '2014-08-31'
+group by description, category_name order by 3 desc limit 10) as aug
+using (description) 
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_sep 
+from sales where date between '2014-09-01' and '2014-09-30' 
+group by description, category_name order by 3 desc limit 10) as sep
+using (description) 
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_oct 
+from sales where date between '2014-10-01' and '2014-10-31' 
+group by description, category_name order by 3 desc limit 10) as oct
+using (description) 
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_nov
+from sales where date between '2014-11-01' and '2014-11-30' 
+group by description, category_name order by 3 desc limit 10) as nov
+using (description) 
+
+join
+(select description, category_name,
+sum(total)::money as total_sales_dec
+from sales where date between '2014-12-01' and '2014-12-31' 
+group by description, category_name order by 3 desc limit 10) as dece
+using (description) 
+
+group by a.description, a.category_name, 
+total_sales_jan, total_sales_feb, total_sales_mar, total_sales_apr, total_sales_may, total_sales_jun, total_sales_jul, total_sales_aug, total_sales_sep,
+total_sales_oct, total_sales_nov, total_sales_dec order by 3 desc limit 10
 ```
 </details>
 
@@ -512,6 +617,104 @@ the year, with spikes in February, May and October.
 Another product, the American whisky Jack Daniels Old \#7, shows some
 milder variations but still with a notable peak in April.
 
+<details>
+<summary>SQL query</summary>
+
+```SQL 
+-- Item making most sales: black velvet, hawkeye vodka
+select a.category_name, sum(total)::money as total_sales, total_sales_jan, total_sales_feb, total_sales_mar, total_sales_apr, total_sales_may, total_sales_jun, total_sales_jul, total_sales_aug, total_sales_sep,
+total_sales_oct, total_sales_nov, total_sales_dec from sales a
+
+join
+(select category_name,
+sum(total)::money as total_sales_jan
+from sales where date between '2014-01-01' and '2014-01-31' 
+group by category_name order by 2 desc limit 10) as jan
+using (category_name)
+
+join
+(select category_name,
+sum(total)::money as total_sales_feb 
+from sales where date between '2014-02-01' and '2014-02-28' 
+group by category_name order by 2 desc limit 10) as feb
+using (category_name) 
+
+join
+(select category_name,
+sum(total)::money as total_sales_mar
+from sales where date between '2014-03-01' and '2014-03-31' 
+group by category_name order by 2 desc limit 10) as mar
+using (category_name) 
+
+join
+(select category_name,
+sum(total)::money as total_sales_apr
+from sales where date between '2014-04-01' and '2014-04-30' 
+group by category_name order by 2 desc limit 10) as apr
+using (category_name) 
+
+join
+(select category_name,
+sum(total)::money as total_sales_may 
+from sales where date between '2014-05-01' and '2014-05-31' 
+group by category_name order by 2 desc limit 10) as may
+using (category_name) 
+
+join
+(select category_name,
+sum(total)::money as total_sales_jun
+from sales where date between '2014-06-01' and '2014-06-30' 
+group by category_name order by 2 desc limit 10) as jun
+using (category_name) 
+
+join
+(select category_name,
+sum(total)::money as total_sales_jul
+from sales where date between '2014-07-01' and '2014-07-31' 
+group by category_name order by 2 desc limit 10) as jul
+using (category_name) 
+
+join
+(select category_name,
+sum(total)::money as total_sales_aug
+from sales where date between '2014-08-01' and '2014-08-31'
+group by category_name order by 2 desc limit 10) as aug
+using (category_name) 
+
+join
+(select category_name,
+sum(total)::money as total_sales_sep 
+from sales where date between '2014-09-01' and '2014-09-30' 
+group by category_name order by 2 desc limit 10) as sep
+using (category_name) 
+
+join
+(select category_name,
+sum(total)::money as total_sales_oct 
+from sales where date between '2014-10-01' and '2014-10-31' 
+group by category_name order by 2 desc limit 10) as oct
+using (category_name) 
+
+join
+(select category_name,
+sum(total)::money as total_sales_nov
+from sales where date between '2014-11-01' and '2014-11-30' 
+group by category_name order by 2 desc limit 10) as nov
+using (category_name) 
+
+join
+(select category_name,
+sum(total)::money as total_sales_dec
+from sales where date between '2014-12-01' and '2014-12-31' 
+group by category_name order by 2 desc limit 10) as dece
+using (category_name) 
+
+group by a.category_name, 
+total_sales_jan, total_sales_feb, total_sales_mar, total_sales_apr, total_sales_may, total_sales_jun, total_sales_jul, total_sales_aug, total_sales_sep,
+total_sales_oct, total_sales_nov, total_sales_dec order by 2 desc limit 10
+```
+</details>
+
 ![](images/iowa-SQL-analysis-images/SQL-growth-categories.png)
 
 Looking at categories, the shape is similar with a downward trend
@@ -519,13 +722,113 @@ towards the end of the year. However, the two most prominent categories
 do not reflect the products above. Canadian Whiskies and 80 proof vodka
 are the products selling the most.
 
-![](images/iowa-SQL-analysis-images/SQL-growth-percent-counties.png)
+<details>
+<summary>SQL query</summary>
+
+```SQL
+-- Sales per county, percents
+select a.county, sum(total)::money as total_sales,percent_sales_jan,percent_sales_feb,percent_sales_mar,percent_sales_apr,percent_sales_may,percent_sales_jun,percent_sales_jul,percent_sales_aug,percent_sales_sep,
+percent_sales_oct,percent_sales_nov,percent_sales_dec from sales a
+
+join
+
+(select county,
+(1 /((select sum(total) from sales where date between '2014-01-01' and '2014-01-31') / sum(total)) * 100)::decimal as percent_sales_jan
+from sales where date between '2014-01-01' and '2014-01-31'
+group by county order by 2 desc limit 10) as jan
+using (county)
+
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-02-01' and '2014-02-28') / sum(total)) * 100)::decimal as percent_sales_feb
+from sales where date between '2014-02-01' and '2014-02-28'
+group by county order by 2 desc limit 10) as feb
+using (county)
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-03-01' and '2014-03-31') / sum(total)) * 100)::decimal as percent_sales_mar
+from sales where date between '2014-03-01' and '2014-03-31'
+group by county order by 2 desc limit 10) as mar
+using (county)
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-04-01' and '2014-04-30') / sum(total)) * 100)::decimal as percent_sales_apr
+from sales where date between '2014-04-01' and '2014-04-30'
+group by county order by 2 desc limit 10) as apr
+using (county)
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-05-01' and '2014-05-31') / sum(total)) * 100)::decimal as percent_sales_may
+from sales where date between '2014-05-01' and '2014-05-31'
+group by county order by 2 desc limit 10) as may
+using (county)
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-06-01' and '2014-06-30') / sum(total)) * 100)::decimal as percent_sales_jun
+from sales where date between '2014-06-01' and '2014-06-30'
+group by county order by 2 desc limit 10) as jun
+using (county)
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-07-01' and '2014-07-31') / sum(total)) * 100)::decimal as percent_sales_jul
+from sales where date between '2014-07-01' and '2014-07-31'
+group by county order by 2 desc limit 10) as jul
+using (county)
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-08-01' and '2014-08-31') / sum(total)) * 100)::decimal as percent_sales_aug
+from sales where date between '2014-08-01' and '2014-08-31'
+group by county order by 2 desc limit 10) as aug
+using (county)
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-09-01' and '2014-09-30') / sum(total)) * 100)::decimal as percent_sales_sep
+from sales where date between '2014-09-01' and '2014-09-30'
+group by county order by 2 desc limit 10) as sep
+using (county)
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-10-01' and '2014-10-31') / sum(total)) * 100)::decimal as percent_sales_oct
+from sales where date between '2014-10-01' and '2014-10-31'
+group by county order by 2 desc limit 10) as oct
+using (county)
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-11-01' and '2014-11-30') / sum(total)) * 100)::decimal as percent_sales_nov
+from sales where date between '2014-11-01' and '2014-11-30'
+group by county order by 2 desc limit 10) as nov
+using (county)
+
+join
+(select county,
+(1 /((select sum(total) from sales where date between '2014-12-01' and '2014-12-31') / sum(total)) * 100)::decimal as percent_sales_dec
+from sales where date between '2014-12-01' and '2014-12-31'
+group by county order by 2 desc limit 10) as dece
+using (county)
+
+group by a.county,
+percent_sales_jan,percent_sales_feb,percent_sales_mar,percent_sales_apr,percent_sales_may,percent_sales_jun,percent_sales_jul,percent_sales_aug,percent_sales_sep,
+percent_sales_oct,percent_sales_nov,percent_sales_dec order by 3 desc limit 10
+
+```
+</details>
+
+![Sales by county, in percents](images/iowa-SQL-analysis-images/SQL-growth-percent-counties.png)
 
 As for the top counties by sales, Polk, the most populated one, is
 far ahead of the rest. With a peak from March to June. The October
 rebound seen in the charts preceding this one is also present.
 
-<span id="__RefHeading___Toc1091_560194899" class="anchor"></span>
 
 ## Analysis
 
@@ -544,4 +847,4 @@ Another product in the top 5, Captain Morgan Spiced Rum has high sales (37k) and
 Over the year, sales across all products have lowered significantly after May. In a steady manner for most Black velvet, unlike the others, fluctuated wildly over the year, with spikes in February, May and October. Another product, the American whisky Jack Daniels Old #7, shows some milder variations but still with a notable peak in April.
 
 ### Yearly changes:
-In 2014, sales progressively went down until a low point in December.  Sales are much higher in the first 2 quarters with a significant drop in the summer. External factors beyond the scope of this data might be at play. 
+In 2014, sales progressively went down until a low point in December.  Sales are much higher in the first 2 quarters with a significant drop in the summer. External factors beyond the scope of this data might be at play.
