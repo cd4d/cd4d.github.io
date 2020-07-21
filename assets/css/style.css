@@ -1,12 +1,49 @@
 ---
 ---
 
-@import "{{ site.theme }}";
+@import "";
 
 hr {
     margin-bottom: 1rem;
 }
 
 .wrapper {
-    max-width: 1200px;
+    max-width: calc(1200px - (30px));
+}
+
+.site-nav a.active {
+    font-weight: bold;
+}
+
+/* Forms */
+
+.contact-form-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.flex-content {
+    list-style-type: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    padding: 0.5em;
+}
+
+.form-row > label {
+    padding: 0.5em 1em 0.5em 0;
+    flex: 1;
+}
+
+.form-row > input, .form-row > textarea {
+    flex: 2;
+}
+
+.form-row > button {
+    padding: 0.15em 1em;
 }

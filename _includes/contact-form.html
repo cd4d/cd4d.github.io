@@ -1,21 +1,28 @@
-<form
-  action="https://formspree.io/xyynlzjn"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="text" name="_replyto" class="input-email">
-  </label>
-  <br/>
-  <label>
-    Your message:
-    <textarea name="message" placeholder="Your message" class="input-message"></textarea>
-  </label>
 
-  <!-- your other form fields go here -->
-
-  <button type="submit">Send</button>
-</form>
+<div class="contact-form-container">
+  <form
+    action="https://formspree.io/xyynlzjn"
+    method="POST"
+  >
+    <ul class="flex-content">
+      <li class="form-row">
+        <label>
+          Your email:
+        </label>
+        <input type="email" name="_replyto" class="input-email" >
+      </li>
+      <li class="form-row">
+        <label>
+          Your message:
+        </label>
+        <textarea name="message" placeholder="Your message" class="input-message"  rows="6"></textarea>
+      </li>
+      <li class="form-row">
+        <button type="submit">Send</button>
+      </li>
+    </ul>
+  </form>
+</div>
 
 
 

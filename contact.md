@@ -7,4 +7,6 @@ title: Contact
 order: 9
 ---
 
+<center>
 {% include contact-form.html %}
+</center>
