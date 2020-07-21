@@ -23,9 +23,9 @@ email: your-email@example.com
 markdown: CommonMarkGhPages
 commonmark:
   options: ["SMART", "FOOTNOTES"]
-  extensions: ["strikethrough", "autolink", "table", "tagfilter"]
+  extensions: ["strikethrough", "autolink", "table"]
 description: >- # this means to ignore newlines until "baseurl:"
-  This simple website showcases some projects I've been working on as part of myp ortfolio.
+  This simple website showcases some projects I've been working on as part of my portfolio.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  cd4d

@@ -78,13 +78,15 @@ All those tables had at least one column in common with another which allowed me
 <details>
 <summary>SQL query</summary>
 
-```SQL 
+
+```sql
 -- per capita spending, only counties with 100k+ pop
 select a.county,b.population, count(distinct store) as num_stores,sum(total)::money as total_sales, cast(sum(a.total) / b.population as money) as total_per_capita from sales a
 inner join counties b using(county) 
 where b.population >= 100000
 group by  a.county, b.population order by 2 desc limit 100
 ```
+
 </details>
 
 | **County** | **Population** | **nr\_of\_stores** | **total\_sales** | **sales\_per\_capita** |
@@ -104,7 +106,8 @@ group by  a.county, b.population order by 2 desc limit 100
 <details>
 <summary>SQL query</summary>
 
-```SQL 
+
+```sql
 -- per store spending,  only counties with 100k+ pop:
 select a.county,b.population, count(distinct store) as num_stores,sum(total)::money as total_sales, cast(sum(a.total) / count(distinct store) as money) as total_per_store from sales a
 inner join counties b using(county) 
@@ -129,7 +132,7 @@ group by  a.county, b.population order by 2 desc limit 100
 <details>
 <summary>SQL query</summary>
 
-```SQL 
+```sql
  -- How many stores: 1973 stores, 1425 active stores, 548 inactive
 select count(*) from stores where store_status ilike 'a'
 -- County with most active stores: Polk with 194 active stores, Linn 98 stores Dickinson only 15 stores
@@ -195,8 +198,7 @@ wholesale.
 <details>
 <summary>SQL query</summary>
 
-```SQL 
-/*** GA Project SQL - 2014 monthly growth of top products ****/
+```sql
 
 -- Item making most sales: black velvet, hawkeye vodka
 select a.description, a.category_name, sum(total)::money as total_sales, total_sales_jan, total_sales_feb, total_sales_mar, total_sales_apr, total_sales_may, total_sales_jun, total_sales_jul, total_sales_aug, total_sales_sep,
@@ -337,7 +339,7 @@ sales.
 <details>
 <summary>SQL query</summary>
 
-```SQL 
+```sql
 -- Products with the highest profit / margin by unit: 
 select description, (avg((btl_price::numeric - state_btl_cost::numeric)))::money as profit_unit,
 round(avg((((btl_price - state_btl_cost) / state_btl_cost) * 100)::numeric),2) as margin, 
@@ -380,7 +382,7 @@ The only products with a margin higher than 50% are niche products.
 <details>
 <summary>SQL query</summary>
 
-```SQL 
+```sql
 -- monthly sales
 select a.description, a.category_name, sum(total)::money as total_sales, total_sales_jan, total_sales_feb, total_sales_mar, total_sales_apr, total_sales_may, total_sales_jun, total_sales_jul, total_sales_aug, total_sales_sep,
 total_sales_oct, total_sales_nov, total_sales_dec from sales a
@@ -512,7 +514,7 @@ their basic license. *
 <details>
 <summary>SQL query</summary>
 
-```SQL 
+```sql
 -- Item making most sales: black velvet, hawkeye vodka
 select a.description, a.category_name, sum(total)::money as total_sales, total_sales_jan, total_sales_feb, total_sales_mar, total_sales_apr, total_sales_may, total_sales_jun, total_sales_jul, total_sales_aug, total_sales_sep,
 total_sales_oct, total_sales_nov, total_sales_dec from sales a
@@ -620,7 +622,7 @@ milder variations but still with a notable peak in April.
 <details>
 <summary>SQL query</summary>
 
-```SQL 
+```sql
 -- Item making most sales: black velvet, hawkeye vodka
 select a.category_name, sum(total)::money as total_sales, total_sales_jan, total_sales_feb, total_sales_mar, total_sales_apr, total_sales_may, total_sales_jun, total_sales_jul, total_sales_aug, total_sales_sep,
 total_sales_oct, total_sales_nov, total_sales_dec from sales a
