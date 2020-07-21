@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Data analysis with SQL query
+order: 2
 ---
 
 

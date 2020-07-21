@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Python data analysis
+order: 1
 ---
 # Reddit users banned for "interference", analysis with Python/Pandas
 
