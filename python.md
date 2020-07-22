@@ -52,7 +52,7 @@ order: 1
 
 
 ### Technologies used
-Python 3, Pandas, Plotly, Jupyter Notebook
+[Python 3](python.org/), [Pandas](pandas.pydata.org/), [Plotly Express](https://plotly.com/python/plotly-express/), [Jupyter Notebook](https://jupyter.org/)
 
 
 ### Context: <a name="context"></a>
