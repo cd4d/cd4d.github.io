@@ -3,9 +3,7 @@ layout: page
 title: Python Data Analysis
 order: 1
 ---
-# Reddit users banned for "interference", analysis with Python/Pandas
 
-<a id="top"></a>
 
 <details>
 <summary>Table of contents</summary>
@@ -45,6 +43,13 @@ order: 1
     + [Words used in posts - users banned in 2019](#words-used-in-posts---users-banned-in-2019)
     + [Comments by all users](#comments-by-all-users)
 </details>
+
+<hr/>
+
+# Reddit users banned for "interference", analysis with Python/Pandas
+
+<a id="top"></a>
+
 
 ### Technologies used
 Python 3, Pandas, Plotly, Jupyter Notebook

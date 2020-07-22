@@ -4,10 +4,6 @@ title: SQL Data Analysis
 order: 2
 ---
 
-
-
-# Data analysis with SQL query
-
 <details>
 <summary>Table of contents</summary>
 
@@ -32,8 +28,12 @@ order: 2
     + [Yearly changes:](#yearly-changes)
 </details>
 
+<hr/>
+
+# Iowa liquor sales data analysis with SQL
+
 ### Technologies used
-PostgreSQL, pgAdmin
+[PostgreSQL](https://www.postgresql.org/), [pgAdmin](https://www.pgadmin.org/)
 
 ## Summary and dataset
 
