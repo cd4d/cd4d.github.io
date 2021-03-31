@@ -20,28 +20,42 @@ order: 1
     + [Submitted and comments, the main dataframes used](#submitted-and-comments-the-main-dataframes-used)
     + [More cleaning](#more-cleaning)
     + [Creating the data subsets for analysis](#creating-the-data-subsets-for-analysis)
-- [Analysis](#analysis)
-  * [Users banned in 2018](#users-banned-in-2018)
-    + [When were the accounts created?](#when-were-the-accounts-created)
-    + [Where did they post their content?](#where-did-they-post-their-content)
-  * [Users banned in 2019](#users-banned-in-2019)
-    + [When were the accounts created?](#when-were-the-accounts-created-1)
-    + [Where did they post their content?](#where-did-they-post-their-content-1)
-  * [Yearly trends](#yearly-trends)
-    + [Postings activity](#postings-activity)
-  * [Comments activity](#comments-activity)
-  * [Year 2016 - US Election](#year-2016---us-election)
-  * [Spike in posts months prior to the 2016 election](#spike-in-posts-months-prior-to-the-2016-election)
-  * [Comments pattern in 2016](#comments-pattern-in-2016)
-  * [Year 2019 - UK Election](#year-2019---uk-election)
-  * [Spike in posts months prior to the 2019 election](#spike-in-posts-months-prior-to-the-2019-election)
-  * [Comments pattern in 2019](#comments-pattern-in-2019)
-  * [Content analysis](#content-analysis)
-    + [Sentiment analysis of posts](#sentiment-analysis-of-posts)
-    + [Sentiment analysis of comments](#sentiment-analysis-of-comments)
-    + [Words used in posts - users banned in 2018](#words-used-in-posts---users-banned-in-2018)
-    + [Words used in posts - users banned in 2019](#words-used-in-posts---users-banned-in-2019)
-    + [Comments by all users](#comments-by-all-users)
+- [Reddit users banned for "interference", analysis with Python/Pandas](#reddit-users-banned-for-interference-analysis-with-pythonpandas)
+    - [Technologies used](#technologies-used)
+    - [Context: <a name="context"></a>](#context-)
+    - [Data retrieval <a name="data-retrieval"></a>](#data-retrieval-)
+      - [Understanding Reddit data](#understanding-reddit-data)
+      - [Getting the list of users](#getting-the-list-of-users)
+      - [Extracting the usernames](#extracting-the-usernames)
+      - [Fetching data from banned users](#fetching-data-from-banned-users)
+    - [Data preparation and analysis with pandas](#data-preparation-and-analysis-with-pandas)
+      - [Importing the data](#importing-the-data)
+      - [Cleaning the data](#cleaning-the-data)
+      - [Submitted and comments, the main dataframes used](#submitted-and-comments-the-main-dataframes-used)
+      - [More cleaning](#more-cleaning)
+      - [Creating the data subsets for analysis](#creating-the-data-subsets-for-analysis)
+  - [Analysis](#analysis)
+    - [Users banned in 2018](#users-banned-in-2018)
+      - [When were the accounts created?](#when-were-the-accounts-created)
+      - [Where did they post their content?](#where-did-they-post-their-content)
+    - [Users banned in 2019](#users-banned-in-2019)
+      - [When were the accounts created?](#when-were-the-accounts-created-1)
+      - [Where did they post their content?](#where-did-they-post-their-content-1)
+    - [Yearly trends](#yearly-trends)
+      - [Postings activity](#postings-activity)
+    - [Comments activity](#comments-activity)
+    - [Year 2016 - US Election](#year-2016---us-election)
+    - [Spike in posts months prior to the 2016 election](#spike-in-posts-months-prior-to-the-2016-election)
+    - [Comments pattern in 2016](#comments-pattern-in-2016)
+    - [Year 2019 - UK Election](#year-2019---uk-election)
+    - [Spike in posts months prior to the 2019 election](#spike-in-posts-months-prior-to-the-2019-election)
+    - [Comments pattern in 2019](#comments-pattern-in-2019)
+    - [Content analysis](#content-analysis)
+      - [Sentiment analysis of posts](#sentiment-analysis-of-posts)
+      - [Sentiment analysis of comments](#sentiment-analysis-of-comments)
+      - [Words used in posts - users banned in 2018](#words-used-in-posts---users-banned-in-2018)
+      - [Words used in posts - users banned in 2019](#words-used-in-posts---users-banned-in-2019)
+      - [Comments by all users](#comments-by-all-users)
 </details>
 
 <hr/>
@@ -877,7 +891,7 @@ top_2019_submitted.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot(
 
 ![png](images/project-reddit-analysis_files/project-reddit-analysis_71_1.png)
 
-TODO
+
 
 ###  Comments pattern in 2019
 
@@ -893,7 +907,7 @@ top_2019_comments.groupby(pd.Grouper(key='date_posted', freq='M')).size().plot()
 
 ![png](images/project-reddit-analysis_files/project-reddit-analysis_70_1.png)
 
-TODO
+
 
 ### Content analysis
 
