@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Data visualization with Tableau
-order: 3
+order: 4
 ---
 
 Below is [a dashboard](https://public.tableau.com/views/SUperstore-Data-analysis/ProfitAnalysis?:language=en&:display_count=y&publish=yes&:origin=viz_share_link) created with [Tableau](https://www.tableau.com/) using their superstore dataset. 

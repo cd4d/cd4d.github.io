@@ -1,7 +1,7 @@
 ---
 layout: page
 title: SQL Data Analysis
-order: 2
+order: 3
 ---
 
 <details>
