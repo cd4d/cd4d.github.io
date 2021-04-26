@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Web development: React
+title: Web development with React
 order: 1
 ---
 
