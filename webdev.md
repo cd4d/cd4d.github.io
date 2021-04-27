@@ -8,4 +8,7 @@ A full-stack simple web application using the MERN stack: MongoDB, Express, Reac
 
 [See the app on Heroku](https://afternoon-cliffs-39431.herokuapp.com). it will take 30seconds to load the Heroku instance (free plan).
 
-![Link lists builder screenshot](images/link-lists-builder-1.png){:height="50%" width="50%"}
+
+
+<img src="images/link-lists-builder-1.png" alt="Link lists builder screenshot" width="50%" height="50%">
+
