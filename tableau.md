@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Data visualization with Tableau
+title: Data viz Tableau
 order: 4
 ---
 

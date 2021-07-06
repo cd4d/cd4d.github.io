@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Angular front end
+title: Angular
 order: 2
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: React Full stack web dev
+title: Full stack MERN 
 order: 1
 ---
 

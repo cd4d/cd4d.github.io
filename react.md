@@ -1,6 +1,6 @@
 ---
 layout: page
-title: React front end
+title: React
 order: 3
 ---
 
