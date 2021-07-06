@@ -18,5 +18,5 @@ Angular single page application showing an editable portfolio of cryptocurrencie
 
 
 
-<a href="https://afternoon-cliffs-39431.herokuapp.com"><img src="images/link-lists-builder-1.png" alt="Link lists builder screenshot" width="50%" height="50%"></a>
+<a href="https://crypto-balance.vercel.app/"><img src="images/angular-crypto-balance.png" alt="Angular screenshot" width="50%" height="50%"></a>
 

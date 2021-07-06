@@ -17,5 +17,5 @@ A React version of the [Angular](angular.html) single page application showing a
 
 
 
-<a href="https://afternoon-cliffs-39431.herokuapp.com"><img src="images/link-lists-builder-1.png" alt="Link lists builder screenshot" width="50%" height="50%"></a>
+<a href="https://react-crypto-balance.vercel.app/"><img src="images/react-crypto-balance.png" alt="React screenshot" width="50%" height="50%"></a>
 
