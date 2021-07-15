@@ -1,19 +1,25 @@
 ---
 layout: page
-title: React
+title: React (Hooks/Redux)
 order: 3
 ---
 
-A React version of the [Angular](angular.html) single page application showing an editable portfolio of cryptocurrencies with a chart representing the balance and related news. Rates and news are fetched from external APIs.
+A React hooks and React-redux version of the [Angular](angular.html) single page application showing an editable portfolio of cryptocurrencies with a chart representing the balance and related news. Rates and news are fetched from external APIs.
 
 ### Stack:
 - React 17
+- Redux version
+- - Redux-toolkit
+- Hooks version
 - Bootstrap 5
 - PrimeReact
-- charts.js
+- Charts.js
 - Coingecko API
+- Context
 
-[See the app on Vercel](https://react-crypto-balance.vercel.app/).
+[React-redux app on Vercel](https://react-redux-crypto-balance.vercel.app/).
+
+[React hooks app on Vercel](https://react-crypto-balance.vercel.app/).
 
 
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Data viz Tableau
+title: Tableau
 order: 6
 ---
 
