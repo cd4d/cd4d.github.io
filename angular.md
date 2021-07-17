@@ -3,6 +3,7 @@ layout: page
 title: Angular
 order: 2
 ---
+## [Angular 12 app demo](https://crypto-balance.vercel.app/)
 
 Angular single page application showing an editable portfolio of cryptocurrencies with a chart representing the balance and related news. Rates and news are fetched from external APIs.
 
@@ -13,8 +14,6 @@ Angular single page application showing an editable portfolio of cryptocurrencie
 - PrimeNG
 - ngx-charts
 - Coingecko API
-
-[See the app on Vercel](https://crypto-balance.vercel.app/).
 
 
 
